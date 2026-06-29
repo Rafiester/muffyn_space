@@ -53,59 +53,6 @@
   --accent-glow: transparent;
 }
 
-/* Fluent Design: Glassmorphism / Acrylic style */
-[data-theme="fluent"] {
-  --bg-app: #eef2f6;
-  --bg-app-image: radial-gradient(circle at 50% 50%, #f1f5f9 0%, #cbd5e1 100%);
-  --bg-card: rgba(255, 255, 255, 0.45);
-  --text-title: #1e293b;
-  --text-body: #475569;
-  --border-card: 1px solid rgba(255, 255, 255, 0.4);
-  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  --border-radius-card: 12px;
-  --font-family-title: 'Outfit', sans-serif;
-  --font-family-body: 'Outfit', sans-serif;
-  --card-hover-transform: scale(1.01) translateY(-2px);
-  --card-hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-  --card-hover-border: 1px solid rgba(255, 255, 255, 0.6);
-  --accent-glow: rgba(99, 102, 241, 0.1);
-  --backdrop-filter-card: blur(20px) saturate(120%);
-}
-
-/* SaaS Modern: Premium clean B2B look */
-[data-theme="saas-modern"] {
-  --bg-app: #fafafa;
-  --bg-app-image: linear-gradient(135deg, #fafafa 0%, #eaeaea 100%);
-  --bg-card: #ffffff;
-  --text-title: #090d16;
-  --text-body: #4e5d78;
-  --border-card: 1px solid #f1f5f9;
-  --shadow-card: 0 2px 16px -1px rgba(0, 0, 0, 0.02), 0 8px 32px -4px rgba(0, 0, 0, 0.03);
-  --border-radius-card: 24px;
-  --font-family-title: 'Outfit', sans-serif;
-  --font-family-body: 'Outfit', sans-serif;
-  --card-hover-transform: translateY(-4px);
-  --card-hover-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.01);
-  --card-hover-border: 1px solid #e2e8f0;
-  --accent-glow: rgba(37, 99, 235, 0.05);
-}
-
-/* Solarized Dark */
-[data-theme="solarized-dark"] {
-  --bg-app: #002b36;
-  --bg-card: #073642;
-  --text-title: #93a1a1;
-  --text-body: #839496;
-  --border-card: 1px solid #586e75;
-  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.35);
-  --border-radius-card: 8px;
-  --font-family-title: 'Space Mono', monospace;
-  --font-family-body: 'Space Mono', monospace;
-  --card-hover-transform: translateY(-2px);
-  --card-hover-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.55);
-  --card-hover-border: 1px solid #b58900; /* Solarized yellow */
-  --accent-glow: rgba(42, 161, 152, 0.15); /* Solarized cyan */
-}
 
 body {
   background-color: var(--bg-app);

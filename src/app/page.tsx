@@ -6,7 +6,7 @@ import ThemeToggle from '../components/ThemeToggle';
 import LinkCard, { LinkItem } from '../components/LinkCard';
 import { supabase, hasSupabaseConfig } from '../lib/supabase';
 
-type Theme = 'minimalist' | 'minimalist-dark' | 'retro' | 'fluent' | 'saas-modern' | 'solarized-dark';
+type Theme = 'minimalist' | 'minimalist-dark' | 'retro';
 
 interface Profile {
   name: string;
@@ -39,7 +39,7 @@ export default function Home() {
 
   // Initialize data and theme on mount
   useEffect(() => {
-    const allowedThemes: Theme[] = ['minimalist', 'minimalist-dark', 'retro', 'fluent', 'saas-modern', 'solarized-dark'];
+    const allowedThemes: Theme[] = ['minimalist', 'minimalist-dark', 'retro'];
 
     async function loadData() {
       if (!hasSupabaseConfig || !supabase) {

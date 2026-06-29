@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import profileData from '../../data/mockData.json';
 import { supabase, hasSupabaseConfig } from '../../lib/supabase';
 
-type Theme = 'minimalist' | 'minimalist-dark' | 'retro' | 'fluent' | 'saas-modern' | 'solarized-dark';
+type Theme = 'minimalist' | 'minimalist-dark' | 'retro';
 
 interface Profile {
   name: string;
@@ -465,9 +465,6 @@ export default function AdminDashboard() {
                   <option value="minimalist">Minimal Light</option>
                   <option value="minimalist-dark">Minimal Dark</option>
                   <option value="retro">90s Retro</option>
-                  <option value="fluent">Fluent Glassmorphism</option>
-                  <option value="saas-modern">SaaS Modern (Premium)</option>
-                  <option value="solarized-dark">Solarized Dark</option>
                 </select>
               </div>
             </div>

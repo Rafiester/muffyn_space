@@ -14,7 +14,7 @@ export interface LinkItem {
 
 interface LinkCardProps {
   link: LinkItem;
-  theme: 'minimalist' | 'minimalist-dark' | 'retro' | 'fluent' | 'saas-modern' | 'solarized-dark';
+  theme: 'minimalist' | 'minimalist-dark' | 'retro';
 }
 
 function getIcon(iconName: string) {
@@ -72,7 +72,7 @@ function getIcon(iconName: string) {
 
 export default function LinkCard({ link, theme }: LinkCardProps) {
   const isRetro = theme === 'retro';
-  const isDark = theme === 'minimalist-dark' || theme === 'solarized-dark';
+  const isDark = theme === 'minimalist-dark';
 
   // Extract accent style for glowing effect in minimalist themes
   const customGlowStyle = !isRetro && link.accentColor

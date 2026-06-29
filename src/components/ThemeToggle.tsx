@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-type Theme = 'minimalist' | 'minimalist-dark' | 'retro' | 'fluent' | 'saas-modern' | 'solarized-dark';
+type Theme = 'minimalist' | 'minimalist-dark' | 'retro';
 
 interface ThemeToggleProps {
   currentTheme: Theme;
@@ -37,40 +37,6 @@ export default function ThemeToggle({ currentTheme, onThemeChange }: ThemeToggle
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
           <rect width="20" height="12" x="2" y="6" rx="2"/>
           <path d="M6 12h.01M10 12h.01M14 12h4"/>
-        </svg>
-      )
-    },
-    {
-      id: 'fluent',
-      label: 'Fluent Glass',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-          <rect width="7" height="7" x="3" y="3" rx="1"/>
-          <rect width="7" height="7" x="14" y="3" rx="1"/>
-          <rect width="7" height="7" x="14" y="14" rx="1"/>
-          <rect width="7" height="7" x="3" y="14" rx="1"/>
-        </svg>
-      )
-    },
-    {
-      id: 'saas-modern',
-      label: 'SaaS Modern',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-          <path d="M12 2L2 7l10 5 10-5-10-5Z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-      )
-    },
-    {
-      id: 'solarized-dark',
-      label: 'Solarized Dark',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          <path d="M2 12h20"/>
         </svg>
       )
     }
