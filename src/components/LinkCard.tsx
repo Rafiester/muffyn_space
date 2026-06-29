@@ -14,7 +14,7 @@ export interface LinkItem {
 
 interface LinkCardProps {
   link: LinkItem;
-  theme: 'minimalist' | 'minimalist-dark' | 'retro';
+  theme: 'minimalist' | 'minimalist-dark' | 'retro' | 'fluent' | 'saas-modern' | 'solarized-dark';
 }
 
 function getIcon(iconName: string) {
@@ -72,7 +72,7 @@ function getIcon(iconName: string) {
 
 export default function LinkCard({ link, theme }: LinkCardProps) {
   const isRetro = theme === 'retro';
-  const isDark = theme === 'minimalist-dark';
+  const isDark = theme === 'minimalist-dark' || theme === 'solarized-dark';
 
   // Extract accent style for glowing effect in minimalist themes
   const customGlowStyle = !isRetro && link.accentColor
@@ -92,7 +92,7 @@ export default function LinkCard({ link, theme }: LinkCardProps) {
         group relative block w-full p-4 md:p-5 theme-card overflow-hidden
         ${isRetro 
           ? 'bg-white text-black border-[3px] border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] rounded-none hover:bg-yellow-50' 
-          : 'bg-[var(--bg-card)] border border-[var(--border-card)] shadow-md rounded-[16px] hover:scale-[1.01]'
+          : 'hover:scale-[1.01]'
         }
         ${link.featured && isRetro ? 'bg-cyan-200 border-[3.5px]' : ''}
         ${link.featured && !isRetro ? 'ring-2 ring-indigo-500/20' : ''}
