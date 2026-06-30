@@ -179,7 +179,7 @@ onMounted(async () => {
       <ProfileHeader v-if="profile" :profile="profile" :theme="theme" />
 
       <!-- Dynamic Link List -->
-      <section :class="['w-full flex flex-col mb-12 mt-[10px]', theme === 'electric' ? 'gap-0 electric-list' : 'gap-4']">
+      <section :class="['w-full flex flex-col mb-12 mt-4', theme === 'electric' ? 'gap-0 electric-list' : 'gap-4']">
         <LinkCard v-for="link in links" :key="link.id" :link="link" :theme="theme" />
       </section>
     </main>
@@ -191,7 +191,7 @@ onMounted(async () => {
 
 <style scoped>
 .electric-list {
-  margin-top: -94px; /* Collapse spacing with a 10px spacing offset */
+  margin-top: -104px; /* Collapse spacing between ProfileHeader bottom bleed and first card top bleed */
 }
 .electric-list > * + * {
   margin-top: -104px; /* Collapse spacing between adjacent electric cards */
