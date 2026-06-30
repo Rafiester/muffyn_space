@@ -40,19 +40,19 @@
 
 /* 90s Retro */
 [data-theme="retro"] {
-  --bg-app: #008080; /* Windows 95 Teal */
-  --bg-app-image: radial-gradient(rgba(255, 255, 255, 0.1) 12%, transparent 12%);
-  --bg-card: #c0c0c0; /* Silver button */
-  --text-title: #ffffff;
+  --bg-app: #fde047; /* Yellow accent color */
+  --bg-app-image: none;
+  --bg-card: #ffffff;
+  --text-title: #000000;
   --text-body: #000000;
-  --border-card: 3px solid #ffffff;
+  --border-card: 3px solid #000000;
   --shadow-card: 6px 6px 0px 0px #000000;
   --border-radius-card: 0px;
   --font-family-title: 'Space Mono', monospace;
   --font-family-body: 'Space Mono', monospace;
   --card-hover-transform: translate(-3px, -3px);
   --card-hover-shadow: 9px 9px 0px 0px #000000;
-  --card-hover-border: 3px solid #ffffff;
+  --card-hover-border: 3px solid #000000;
   --accent-glow: transparent;
 }
 
