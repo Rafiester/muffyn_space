@@ -59,7 +59,7 @@ export default function Sidebar({
 
   return (
     <aside 
-      className="fixed top-0 left-0 h-full w-[260px] z-50 bg-[#1e1d23]/95 backdrop-blur-xl border-r border-white/[0.04] flex flex-col justify-between"
+      className="fixed top-0 left-0 h-full w-[260px] z-50 bg-[#1e1d23] border-r border-white/[0.04] flex flex-col justify-between"
     >
       {/* Top Section */}
       <div className="flex flex-col">
