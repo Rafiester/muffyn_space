@@ -507,7 +507,7 @@ export default function AdminDashboard() {
 
           {/* Unified Bottom Save Changes Button */}
           {activeTab !== 'dashboard' && (
-            <div className="mt-8 pt-6 border-t border-white/[0.04] flex justify-end">
+            <div className="mt-8 pt-6 border-t border-white/[0.04] flex justify-end pr-6">
               <button
                 onClick={saveAllChanges}
                 disabled={saving}
