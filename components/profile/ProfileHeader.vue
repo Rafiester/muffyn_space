@@ -12,7 +12,7 @@ interface Profile {
 
 const props = defineProps<{
   profile: Profile;
-  theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized' | 'electric';
+  theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized' | 'electric';
 }>();
 
 const isRetro = computed(() => props.theme === 'retro');

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized' | 'electric';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized' | 'electric';
 
 defineProps<{
   currentTheme: Theme;
@@ -43,11 +43,7 @@ const themeOptions: { value: Theme; label: string; iconPath: string; viewBox?: s
     label: 'Fluent Glass',
     iconPath: 'M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9zm0-16a7 7 0 1 1-7 7 7 7 0 0 1 7-7z M12 9v6 M9 12h6'
   },
-  {
-    value: 'saas',
-    label: 'SaaS Modern',
-    iconPath: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z'
-  },
+
   {
     value: 'solarized',
     label: 'Solarized Dark',
@@ -91,11 +87,9 @@ export default {
                 ? 'bg-[#0a0a0a] border border-[#222222] shadow-[0_4px_20px_rgba(255,255,255,0.05)] rounded-2xl'
                 : currentTheme === 'solarized'
                   ? 'bg-[#073642] border border-[#586e75] shadow-lg rounded-lg'
-                  : currentTheme === 'saas'
-                    ? 'bg-white border border-slate-100 shadow-[0_10px_30px_rgba(99,102,241,0.08)] rounded-3xl'
-                    : currentTheme === 'electric'
-                      ? 'bg-zinc-950 border border-emerald-500 shadow-[0_0_15px_rgba(40,255,133,0.15)] rounded-2xl'
-                      : 'bg-white/95 border border-slate-200 shadow-2xl rounded-2xl backdrop-blur-xl'
+                  : currentTheme === 'electric'
+                    ? 'bg-zinc-950 border border-emerald-500 shadow-[0_0_15px_rgba(40,255,133,0.15)] rounded-2xl'
+                    : 'bg-white/95 border border-slate-200 shadow-2xl rounded-2xl backdrop-blur-xl'
         ]"
       >
         <span 

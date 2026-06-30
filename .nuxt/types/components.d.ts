@@ -14,6 +14,7 @@ type HydrationStrategies = {
 type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }> & T
 
 interface _GlobalComponents {
+  AdminAvatarUploader: typeof import("../../components/admin/AvatarUploader.vue")['default']
   AdminDashboardHeader: typeof import("../../components/admin/DashboardHeader.vue")['default']
   AdminDeleteModal: typeof import("../../components/admin/DeleteModal.vue")['default']
   AdminLinkEditorItem: typeof import("../../components/admin/LinkEditorItem.vue")['default']
@@ -25,6 +26,7 @@ interface _GlobalComponents {
   ProfileLinkCard: typeof import("../../components/profile/LinkCard.vue")['default']
   ProfileFooter: typeof import("../../components/profile/ProfileFooter.vue")['default']
   ProfileHeader: typeof import("../../components/profile/ProfileHeader.vue")['default']
+  UiElectricBorder: typeof import("../../components/ui/ElectricBorder.vue")['default']
   UiThemeToggle: typeof import("../../components/ui/ThemeToggle.vue")['default']
   NuxtWelcome: typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']
   NuxtLayout: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -49,6 +51,7 @@ interface _GlobalComponents {
   Html: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']
   Body: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']
   NuxtIsland: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']
+  LazyAdminAvatarUploader: LazyComponent<typeof import("../../components/admin/AvatarUploader.vue")['default']>
   LazyAdminDashboardHeader: LazyComponent<typeof import("../../components/admin/DashboardHeader.vue")['default']>
   LazyAdminDeleteModal: LazyComponent<typeof import("../../components/admin/DeleteModal.vue")['default']>
   LazyAdminLinkEditorItem: LazyComponent<typeof import("../../components/admin/LinkEditorItem.vue")['default']>
@@ -60,6 +63,7 @@ interface _GlobalComponents {
   LazyProfileLinkCard: LazyComponent<typeof import("../../components/profile/LinkCard.vue")['default']>
   LazyProfileFooter: LazyComponent<typeof import("../../components/profile/ProfileFooter.vue")['default']>
   LazyProfileHeader: LazyComponent<typeof import("../../components/profile/ProfileHeader.vue")['default']>
+  LazyUiElectricBorder: LazyComponent<typeof import("../../components/ui/ElectricBorder.vue")['default']>
   LazyUiThemeToggle: LazyComponent<typeof import("../../components/ui/ThemeToggle.vue")['default']>
   LazyNuxtWelcome: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
   LazyNuxtLayout: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>

@@ -7,7 +7,7 @@ import ProfileHeader from '../components/profile/ProfileHeader.vue';
 import ProfileFooter from '../components/profile/ProfileFooter.vue';
 import { supabase, hasSupabaseConfig } from '../lib/supabase';
 
-type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized' | 'electric';
 
 interface Profile {
   name: string;
@@ -56,7 +56,7 @@ const handleThemeChange = (newTheme: Theme) => {
 };
 
 onMounted(async () => {
-  const allowedThemes: Theme[] = ['clean-light', 'pitch-dark', 'retro', 'fluent', 'saas', 'solarized'];
+  const allowedThemes: Theme[] = ['clean-light', 'pitch-dark', 'retro', 'fluent', 'solarized', 'electric'];
 
   async function loadData() {
     if (!hasSupabaseConfig || !supabase) {

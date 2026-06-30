@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized';
 
 interface Settings {
   active_theme: Theme;
@@ -35,7 +35,7 @@ const emit = defineEmits<{
           <option value="pitch-dark" class="bg-slate-900 text-white">Pitch Dark</option>
           <option value="retro" class="bg-slate-900 text-white">90s Retro</option>
           <option value="fluent" class="bg-slate-900 text-white">Fluent Design (Glassmorphism)</option>
-          <option value="saas" class="bg-slate-900 text-white">SaaS Modern</option>
+
           <option value="solarized" class="bg-slate-900 text-white">Solarized Dark</option>
           <option value="electric" class="bg-slate-900 text-white">Electric Border</option>
         </select>

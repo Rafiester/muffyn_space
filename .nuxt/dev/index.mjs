@@ -1,47 +1,47 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, createError, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, getQuery as getQuery$1, readBody, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, getRouterParam, getResponseStatusText } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, createError, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, getQuery as getQuery$1, readBody, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, getRouterParam, getResponseStatusText } from 'file:///Users/flo/muffytreen/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import crypto$1 from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { escapeHtml } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/@vue/shared/dist/shared.cjs.js';
-import viteNodeEntry_mjs from 'file:///Users/flo/muffytreen/muffytreen/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs';
-import { viteNodeFetch } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/@nuxt/vite-builder/dist/vite-node.mjs';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, encodePath, joinRelativeURL } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/vue/server-renderer/index.mjs';
-import destr, { destr as destr$1 } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/destr/dist/index.mjs';
-import { createHooks } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, defineDriver, prefixStorage } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unstorage/drivers/fs.mjs';
-import fsDriver from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unstorage/drivers/fs-lite.mjs';
-import lruCache from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unstorage/drivers/lru-cache.mjs';
-import { digest, hash as hash$1 } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/scule/dist/index.mjs';
-import { getContext } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/radix3/dist/index.mjs';
+import { escapeHtml } from 'file:///Users/flo/muffytreen/node_modules/@vue/shared/dist/shared.cjs.js';
+import viteNodeEntry_mjs from 'file:///Users/flo/muffytreen/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs';
+import { viteNodeFetch } from 'file:///Users/flo/muffytreen/node_modules/@nuxt/vite-builder/dist/vite-node.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/flo/muffytreen/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, encodePath, joinRelativeURL } from 'file:///Users/flo/muffytreen/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///Users/flo/muffytreen/node_modules/vue/server-renderer/index.mjs';
+import destr, { destr as destr$1 } from 'file:///Users/flo/muffytreen/node_modules/destr/dist/index.mjs';
+import { createHooks } from 'file:///Users/flo/muffytreen/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file:///Users/flo/muffytreen/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/flo/muffytreen/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, defineDriver, prefixStorage } from 'file:///Users/flo/muffytreen/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/flo/muffytreen/node_modules/unstorage/drivers/fs.mjs';
+import fsDriver from 'file:///Users/flo/muffytreen/node_modules/unstorage/drivers/fs-lite.mjs';
+import lruCache from 'file:///Users/flo/muffytreen/node_modules/unstorage/drivers/lru-cache.mjs';
+import { digest, hash as hash$1 } from 'file:///Users/flo/muffytreen/node_modules/ohash/dist/index.mjs';
+import { klona } from 'file:///Users/flo/muffytreen/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///Users/flo/muffytreen/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///Users/flo/muffytreen/node_modules/scule/dist/index.mjs';
+import { getContext } from 'file:///Users/flo/muffytreen/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/flo/muffytreen/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file:///Users/flo/muffytreen/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file:///Users/flo/muffytreen/node_modules/youch-core/build/index.js';
+import { Youch } from 'file:///Users/flo/muffytreen/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file:///Users/flo/muffytreen/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/errx/dist/index.js';
-import { isVNode, isRef, toValue } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/vue/index.mjs';
-import _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw from 'file:///Users/flo/muffytreen/muffytreen/node_modules/@nuxt/vite-builder/dist/fix-stacktrace.mjs';
+import { stringify, uneval } from 'file:///Users/flo/muffytreen/node_modules/devalue/index.js';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/flo/muffytreen/node_modules/errx/dist/index.js';
+import { isVNode, isRef, toValue } from 'file:///Users/flo/muffytreen/node_modules/vue/index.mjs';
+import _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw from 'file:///Users/flo/muffytreen/node_modules/@nuxt/vite-builder/dist/fix-stacktrace.mjs';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname as dirname$1, resolve as resolve$1 } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/pathe/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unhead/dist/server.mjs';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unhead/dist/plugins.mjs';
-import { walkResolver } from 'file:///Users/flo/muffytreen/muffytreen/node_modules/unhead/dist/utils.mjs';
+import { dirname as dirname$1, resolve as resolve$1 } from 'file:///Users/flo/muffytreen/node_modules/pathe/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/flo/muffytreen/node_modules/unhead/dist/server.mjs';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///Users/flo/muffytreen/node_modules/unhead/dist/plugins.mjs';
+import { walkResolver } from 'file:///Users/flo/muffytreen/node_modules/unhead/dist/utils.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"/Users/flo/muffytreen/muffytreen/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/Users/flo/muffytreen/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -62,7 +62,7 @@ function normalizeFsKey (item) {
   return `${prefix}-${hash}`
 }
 
-const _47Users_47flo_47muffytreen_47muffytreen_47node_modules_47_64nuxt_47nitro_45server_47dist_47runtime_47utils_47cache_45driver_46js = defineDriver(
+const _47Users_47flo_47muffytreen_47node_modules_47_64nuxt_47nitro_45server_47dist_47runtime_47utils_47cache_45driver_46js = defineDriver(
   /**
    * @param {{ base?: string }} opts
    */
@@ -92,12 +92,12 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets$1);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/flo/muffytreen/muffytreen","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/flo/muffytreen/muffytreen/server","watchOptions":{"ignored":[null]}}));
-storage.mount('cache:nuxt:payload', _47Users_47flo_47muffytreen_47muffytreen_47node_modules_47_64nuxt_47nitro_45server_47dist_47runtime_47utils_47cache_45driver_46js({"driver":"/Users/flo/muffytreen/muffytreen/node_modules/@nuxt/nitro-server/dist/runtime/utils/cache-driver.js","base":"/Users/flo/muffytreen/muffytreen/.nuxt/cache/nuxt/payload"}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/flo/muffytreen/muffytreen/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/flo/muffytreen/muffytreen/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/flo/muffytreen/muffytreen/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/flo/muffytreen","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/flo/muffytreen/server","watchOptions":{"ignored":[null]}}));
+storage.mount('cache:nuxt:payload', _47Users_47flo_47muffytreen_47node_modules_47_64nuxt_47nitro_45server_47dist_47runtime_47utils_47cache_45driver_46js({"driver":"/Users/flo/muffytreen/node_modules/@nuxt/nitro-server/dist/runtime/utils/cache-driver.js","base":"/Users/flo/muffytreen/.nuxt/cache/nuxt/payload"}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/flo/muffytreen/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/flo/muffytreen/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/flo/muffytreen/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -679,16 +679,6 @@ const _inlineRuntimeConfig = {
     "routeRules": {
       "/__nuxt_error": {
         "cache": false
-      },
-      "/_nuxt/builds/meta/**": {
-        "headers": {
-          "cache-control": "public, max-age=31536000, immutable"
-        }
-      },
-      "/_nuxt/builds/**": {
-        "headers": {
-          "cache-control": "public, max-age=1, immutable"
-        }
       }
     }
   },
@@ -2081,7 +2071,7 @@ async function errorHandler(error, event) {
   // H3 will handle fallback
 }
 
-const rootDir = "/Users/flo/muffytreen/muffytreen";
+const rootDir = "/Users/flo/muffytreen";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -2107,7 +2097,7 @@ const asyncContext = getContext("nuxt-dev", {
 	asyncContext: true,
 	AsyncLocalStorage
 });
-const _ZKfuwIXrS4nk9YQ_acRA0bAA8jMFYjN4NhhM2cjaCQ = (nitroApp) => {
+const _9sdqFqsXn1inWh3jjzhLxlJWB25dT221111EOx0IMJY = (nitroApp) => {
 	const handler = nitroApp.h3App.handler;
 	nitroApp.h3App.handler = (event) => {
 		return asyncContext.callAsync({
@@ -2183,7 +2173,7 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _ZKfuwIXrS4nk9YQ_acRA0bAA8jMFYjN4NhhM2cjaCQ,
+  _9sdqFqsXn1inWh3jjzhLxlJWB25dT221111EOx0IMJY,
 _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw
 ];
 
@@ -2194,7 +2184,7 @@ function readAsset (id) {
   return promises.readFile(resolve$1(serverDir, assets[id].path))
 }
 
-const publicAssetBases = {"/_nuxt/builds/meta/":{"maxAge":31536000},"/_nuxt/builds/":{"maxAge":1}};
+const publicAssetBases = {};
 
 function isPublicAssetURL(id = '') {
   if (assets[id]) {
@@ -2212,7 +2202,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _4XqOGf = eventHandler((event) => {
+const _bju_Hj = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -2718,13 +2708,13 @@ async function getIslandContext(event) {
 	};
 }
 
-const _lazy_J9RWZk = () => Promise.resolve().then(function () { return renderer; });
+const _lazy_zqAqU1 = () => Promise.resolve().then(function () { return renderer; });
 
 const handlers = [
-  { route: '', handler: _4XqOGf, lazy: false, middleware: true, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_J9RWZk, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _bju_Hj, lazy: false, middleware: true, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_zqAqU1, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: handler$1, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_J9RWZk, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_zqAqU1, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -3209,18 +3199,6 @@ async function renderRoute(event, ssrError) {
 	const NO_SCRIPTS = routeOptions.noScripts;
 	
 	const { styles, scripts } = getRequestDependencies(ssrContext, renderer.rendererContext);
-	if (ssrContext["~preloadManifest"] && !NO_SCRIPTS) {
-		ssrContext.head.push({ link: [{
-			rel: "preload",
-			as: "fetch",
-			fetchpriority: "low",
-			crossorigin: "anonymous",
-			href: buildAssetsURL(`builds/meta/${ssrContext.runtimeConfig.app.buildId}.json`)
-		}] }, {
-			...headEntryOptions,
-			tagPriority: "low"
-		});
-	}
 	
 	if (inlinedStyles.length) {
 		ssrContext.head.push({ style: inlinedStyles });

@@ -74,9 +74,6 @@
       "nitropack": [
         "../node_modules/nitropack"
       ],
-      "vite/client": [
-        "../node_modules/vite/client"
-      ],
       "nitropack/types": [
         "../node_modules/nitropack/types"
       ],

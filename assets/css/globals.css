@@ -76,23 +76,6 @@
   --accent-glow: rgba(99, 102, 241, 0.1);
 }
 
-/* SaaS Modern */
-[data-theme="saas"] {
-  --bg-app: #fafbfe;
-  --bg-app-image: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
-  --bg-card: #ffffff;
-  --text-title: #1e1b4b;
-  --text-body: #4f46e5;
-  --border-card: 1px solid rgba(99, 102, 241, 0.08);
-  --shadow-card: 0 10px 30px -10px rgba(99, 102, 241, 0.12);
-  --border-radius-card: 20px;
-  --font-family-title: 'Outfit', sans-serif;
-  --font-family-body: 'Outfit', sans-serif;
-  --card-hover-transform: translateY(-4px);
-  --card-hover-shadow: 0 20px 45px -15px rgba(99, 102, 241, 0.2);
-  --card-hover-border: 1px solid rgba(99, 102, 241, 0.25);
-  --accent-glow: rgba(99, 102, 241, 0.05);
-}
 
 /* Solarized Dark */
 [data-theme="solarized"] {

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import AvatarUploader from './AvatarUploader.vue';
 
-type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized';
 
 interface Profile {
   name: string;

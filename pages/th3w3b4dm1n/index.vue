@@ -11,7 +11,7 @@ import SettingsEditor from '../../components/admin/SettingsEditor.vue';
 import Sidebar from '../../components/admin/Sidebar.vue';
 import DeleteModal from '../../components/admin/DeleteModal.vue';
 
-type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized';
 type TabType = 'dashboard' | 'home' | 'about' | 'settings';
 
 interface Profile {

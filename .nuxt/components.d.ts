@@ -14,6 +14,7 @@ type HydrationStrategies = {
 type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }> & T
 
 
+export const AdminAvatarUploader: typeof import("../components/admin/AvatarUploader.vue")['default']
 export const AdminDashboardHeader: typeof import("../components/admin/DashboardHeader.vue")['default']
 export const AdminDeleteModal: typeof import("../components/admin/DeleteModal.vue")['default']
 export const AdminLinkEditorItem: typeof import("../components/admin/LinkEditorItem.vue")['default']
@@ -25,6 +26,7 @@ export const AdminSocialsEditor: typeof import("../components/admin/SocialsEdito
 export const ProfileLinkCard: typeof import("../components/profile/LinkCard.vue")['default']
 export const ProfileFooter: typeof import("../components/profile/ProfileFooter.vue")['default']
 export const ProfileHeader: typeof import("../components/profile/ProfileHeader.vue")['default']
+export const UiElectricBorder: typeof import("../components/ui/ElectricBorder.vue")['default']
 export const UiThemeToggle: typeof import("../components/ui/ThemeToggle.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -49,6 +51,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
+export const LazyAdminAvatarUploader: LazyComponent<typeof import("../components/admin/AvatarUploader.vue")['default']>
 export const LazyAdminDashboardHeader: LazyComponent<typeof import("../components/admin/DashboardHeader.vue")['default']>
 export const LazyAdminDeleteModal: LazyComponent<typeof import("../components/admin/DeleteModal.vue")['default']>
 export const LazyAdminLinkEditorItem: LazyComponent<typeof import("../components/admin/LinkEditorItem.vue")['default']>
@@ -60,6 +63,7 @@ export const LazyAdminSocialsEditor: LazyComponent<typeof import("../components/
 export const LazyProfileLinkCard: LazyComponent<typeof import("../components/profile/LinkCard.vue")['default']>
 export const LazyProfileFooter: LazyComponent<typeof import("../components/profile/ProfileFooter.vue")['default']>
 export const LazyProfileHeader: LazyComponent<typeof import("../components/profile/ProfileHeader.vue")['default']>
+export const LazyUiElectricBorder: LazyComponent<typeof import("../components/ui/ElectricBorder.vue")['default']>
 export const LazyUiThemeToggle: LazyComponent<typeof import("../components/ui/ThemeToggle.vue")['default']>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>

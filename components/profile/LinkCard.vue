@@ -14,7 +14,7 @@ interface LinkItem {
 
 const props = defineProps<{
   link: LinkItem;
-  theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized' | 'electric';
+  theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized' | 'electric';
 }>();
 
 const isRetro = computed(() => props.theme === 'retro');

@@ -433,17 +433,17 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BVA0z88U.mjs')
+    component: () => import('./index-D3w5i6pj.mjs')
   },
   {
     name: "th3w3b4dm1n",
     path: "/th3w3b4dm1n",
-    component: () => import('./index-DLcpEWc7.mjs')
+    component: () => import('./index-CrC4rvGf.mjs')
   },
   {
     name: "th3w3b4dm1n-login",
     path: "/th3w3b4dm1n/login",
-    component: () => import('./login-Bvd8dG4h.mjs')
+    component: () => import('./login-DKyAj8LN.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -962,8 +962,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-C4XD5ugW.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-DuoiComa.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-CC37BMlu.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-rBBBlqfK.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
