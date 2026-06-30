@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import DeleteModal from './DeleteModal';
+import React from 'react';
 
 interface LinkItem {
   id: string;
@@ -27,31 +26,12 @@ export default function LinkEditorItem({
   onDeleteLink,
   isDragActive = false
 }: LinkEditorItemProps) {
-  const [showConfirm, setShowConfirm] = useState(false);
-
-  const handleDeleteClick = () => {
-    setShowConfirm(true);
-  };
-
-  const handleConfirmDelete = () => {
-    onDeleteLink(idx);
-    setShowConfirm(false);
-  };
-
   return (
     <div className={`p-4 border rounded-xl transition-all space-y-4 relative ${
       isDragActive 
         ? 'bg-white/[0.03] border-[#af413c]/30 cursor-grab active:cursor-grabbing hover:border-[#af413c]/50'
         : 'bg-white/[0.01] border-white/[0.03] hover:border-white/[0.06]'
     }`}>
-      {/* Centered screen-level Confirmation Popup Dialog */}
-      <DeleteModal
-        isOpen={showConfirm}
-        onClose={() => setShowConfirm(false)}
-        onConfirm={handleConfirmDelete}
-        itemName={link.title || 'this link'}
-      />
-
       {/* Header bar of link panel */}
       <div className="flex items-center justify-between pb-3 border-b border-white/[0.04] gap-4">
         <div className="flex items-center gap-2 flex-1">
@@ -89,7 +69,7 @@ export default function LinkEditorItem({
 
           {/* Delete link */}
           <button
-            onClick={handleDeleteClick}
+            onClick={() => onDeleteLink(idx)}
             className="p-1 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 text-white/30 hover:text-rose-400 rounded-lg transition-all ml-1"
             title="Delete Link"
             disabled={isDragActive}

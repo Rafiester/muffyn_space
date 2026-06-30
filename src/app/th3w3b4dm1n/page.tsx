@@ -10,6 +10,7 @@ import SocialsEditor from '../../components/admin/SocialsEditor';
 import LinksManager from '../../components/admin/LinksManager';
 import SettingsEditor from '../../components/admin/SettingsEditor';
 import Sidebar, { TabType } from '../../components/admin/Sidebar';
+import DeleteModal from '../../components/admin/DeleteModal';
 
 type Theme = 'minimalist' | 'minimalist-dark' | 'retro';
 
@@ -79,6 +80,9 @@ export default function AdminDashboard() {
   const [links, setLinks] = useState<LinkItem[]>([]);
   const [profileId, setProfileId] = useState<string | null>(null);
 
+  // Universal Delete Modal State
+  const [deleteTargetIndex, setDeleteTargetIndex] = useState<number | null>(null);
+
   // Utility to show toasts
   const showToast = (message: string, type: 'success' | 'error') => {
     setToast({ message, type });
@@ -128,34 +132,36 @@ export default function AdminDashboard() {
         } else {
           setLinks(profileData.links.map(l => ({ ...l, is_active: true })));
         }
-
         setLoading(false);
         setMounted(true);
         return;
       }
 
       try {
-        setLoading(true);
         const { data: dbProfile, error: profileErr } = await supabase
           .from('profiles')
           .select('*')
-          .limit(1)
           .single();
 
         if (profileErr) throw profileErr;
 
         if (dbProfile) {
           setProfileId(dbProfile.id);
-          const socialsObj = dbProfile.socials || {};
+          const rawSocials = dbProfile.socials || {};
           setProfile({
             name: dbProfile.display_name || '',
-            title: dbProfile.title || 'Creative Technologist',
+            title: dbProfile.title || '',
             bio: dbProfile.bio || '',
             avatar: dbProfile.avatar_url || '',
-            active_theme: (dbProfile.active_theme as Theme) || 'minimalist',
-            meta_title: socialsObj.meta_title || '',
-            meta_description: socialsObj.meta_description || '',
-            socials: socialsObj
+            active_theme: dbProfile.active_theme || 'minimalist',
+            meta_title: rawSocials.meta_title || '',
+            meta_description: rawSocials.meta_description || '',
+            socials: {
+              github: rawSocials.github || '',
+              twitter: rawSocials.twitter || '',
+              linkedin: rawSocials.linkedin || '',
+              email: rawSocials.email || ''
+            }
           });
 
           const { data: dbLinks, error: linksErr } = await supabase
@@ -255,11 +261,17 @@ export default function AdminDashboard() {
     setLinks(prev => [...prev, newLink]);
   };
 
+  // Trigger Confirmation Delete
+  const triggerDeleteConfirm = (index: number) => {
+    setDeleteTargetIndex(index);
+  };
 
-
-  // Delete a link from array
-  const deleteLink = (index: number) => {
-    setLinks(prev => prev.filter((_, i) => i !== index));
+  // Confirm delete handler
+  const executeDeleteLink = () => {
+    if (deleteTargetIndex !== null) {
+      setLinks(prev => prev.filter((_, i) => i !== deleteTargetIndex));
+      setDeleteTargetIndex(null);
+    }
   };
 
   // Save changes to database or local state
@@ -304,20 +316,22 @@ export default function AdminDashboard() {
 
       if (fetchErr) throw fetchErr;
 
-      const currentDbIds = (dbLinks || []).map(l => l.id);
-      const remainingIds = links.map(l => l.id).filter(id => !id.startsWith('new-'));
-      const deletedIds = currentDbIds.filter(id => !remainingIds.includes(id));
+      const dbLinkIds = dbLinks?.map(l => l.id) || [];
+      const currentLinkIds = links.map(l => l.id).filter(id => !id.startsWith('new-'));
+      const idsToDelete = dbLinkIds.filter(id => !currentLinkIds.includes(id));
 
-      if (deletedIds.length > 0) {
+      if (idsToDelete.length > 0) {
         const { error: deleteErr } = await supabase
           .from('links')
           .delete()
-          .in('id', deletedIds);
+          .in('id', idsToDelete);
+
         if (deleteErr) throw deleteErr;
       }
 
-      const upsertRows = links.map((link, index) => {
-        const row: Record<string, unknown> = {
+      for (let i = 0; i < links.length; i++) {
+        const link = links[i];
+        const payload = {
           profile_id: profileId,
           title: link.title,
           description: link.description || null,
@@ -326,22 +340,24 @@ export default function AdminDashboard() {
           featured: link.featured,
           accent_color: link.accentColor || null,
           is_active: link.is_active !== false,
-          sort_order: index
+          sort_order: i
         };
-        if (!link.id.startsWith('new-')) {
-          row.id = link.id;
-        }
-        return row;
-      });
 
-      if (upsertRows.length > 0) {
-        const { error: upsertErr } = await supabase
-          .from('links')
-          .upsert(upsertRows);
-        if (upsertErr) throw upsertErr;
+        if (link.id.startsWith('new-')) {
+          const { error: insertErr } = await supabase
+            .from('links')
+            .insert(payload);
+          if (insertErr) throw insertErr;
+        } else {
+          const { error: updateErr } = await supabase
+            .from('links')
+            .update(payload)
+            .eq('id', link.id);
+          if (updateErr) throw updateErr;
+        }
       }
 
-      showToast('All CMS Changes Published Live!', 'success');
+      showToast('All CMS Changes Published Successfully!', 'success');
 
       const { data: refreshedLinks, error: refreshErr } = await supabase
         .from('links')
@@ -383,8 +399,6 @@ export default function AdminDashboard() {
     );
   }
 
-
-
   return (
     <div className="min-h-screen bg-[#1e1d23] text-slate-100 flex font-sans">
       {/* Toast Alert */}
@@ -399,6 +413,14 @@ export default function AdminDashboard() {
           </div>
         </div>
       )}
+
+      {/* Screen-Level Universal Delete Modal */}
+      <DeleteModal
+        isOpen={deleteTargetIndex !== null}
+        onClose={() => setDeleteTargetIndex(null)}
+        onConfirm={executeDeleteLink}
+        itemName={deleteTargetIndex !== null ? (links[deleteTargetIndex]?.title || 'this link') : ''}
+      />
 
       <Sidebar
         activeTab={activeTab}
@@ -419,7 +441,6 @@ export default function AdminDashboard() {
         {/* Content Container */}
         <main className="max-w-full w-full mx-auto px-6 py-10 flex-1 flex flex-col justify-start">
           
-
 
           {/* Tab Panels */}
           {activeTab === 'dashboard' && (
@@ -443,7 +464,7 @@ export default function AdminDashboard() {
                 links={links}
                 onAddLink={addLink}
                 onLinkChange={handleLinkChange}
-                onDeleteLink={deleteLink}
+                onDeleteLink={triggerDeleteConfirm}
                 onReorderAll={setLinks}
                 onSaveAll={saveAllChanges}
                 saving={saving}
