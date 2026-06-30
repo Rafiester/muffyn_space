@@ -46,7 +46,7 @@ export default function LinkEditorItem({
             type="text"
             value={link.title}
             onChange={(e) => onLinkChange(idx, 'title', e.target.value)}
-            className="bg-transparent border-b border-transparent hover:border-white/20 focus:border-[#af413c]/50 text-sm font-bold text-white outline-none pb-0.5 flex-1 w-full"
+            className="bg-transparent border-b border-transparent hover:border-white/20 focus:border-[#af413c]/50 text-sm font-bold !text-white outline-none pb-0.5 flex-1 w-full"
             placeholder="Link Title"
             disabled={isDragActive}
           />

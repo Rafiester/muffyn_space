@@ -16,7 +16,7 @@ interface SettingsEditorProps {
 export default function SettingsEditor({ settings, onChange }: SettingsEditorProps) {
   return (
     <div className="bg-white/[0.02] border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm">
-      <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-white/30 mb-6">
+      <h2 className="text-xs font-bold uppercase tracking-[0.12em] !text-white/30 mb-6">
         Experience Settings & SEO
       </h2>
 

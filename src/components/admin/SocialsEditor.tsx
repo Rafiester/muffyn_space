@@ -15,7 +15,7 @@ interface SocialsEditorProps {
 export default function SocialsEditor({ socials, onChange }: SocialsEditorProps) {
   return (
     <div className="bg-[#1e1d23]/80 border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm mt-6">
-      <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-white/30 mb-6">
+      <h2 className="text-xs font-bold uppercase tracking-[0.12em] !text-white/30 mb-6">
         Social Accounts
       </h2>
 
