@@ -9,6 +9,18 @@ const error = ref<string | null>(null);
 const loading = ref(false);
 const mounted = ref(false);
 
+useHead({
+  htmlAttrs: {
+    style: 'background-color: #1e1d23 !important;'
+  },
+  bodyAttrs: {
+    style: 'background-color: #1e1d23 !important;'
+  },
+  meta: [
+    { name: 'theme-color', content: '#1e1d23' }
+  ]
+});
+
 onMounted(() => {
   const isAuthed = localStorage.getItem('admin-session') === 'true';
   if (isAuthed) {
