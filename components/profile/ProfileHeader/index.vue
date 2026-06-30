@@ -2,11 +2,6 @@
 import { computed } from 'vue';
 import ElectricBorder from '../../ui/ElectricBorder/index.vue';
 
-interface Profile {
-  name: string;
-  title: string;
-  bio: string;
-  avatar: string;
 interface SocialCard {
   url: string;
   icon: string;
