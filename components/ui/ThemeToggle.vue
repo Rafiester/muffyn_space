@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized' | 'electric';
 
 defineProps<{
   currentTheme: Theme;
@@ -52,6 +52,11 @@ const themeOptions: { value: Theme; label: string; iconPath: string; viewBox?: s
     value: 'solarized',
     label: 'Solarized Dark',
     iconPath: 'M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5'
+  },
+  {
+    value: 'electric',
+    label: 'Electric Border',
+    iconPath: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z'
   }
 ];
 </script>
@@ -88,7 +93,9 @@ export default {
                   ? 'bg-[#073642] border border-[#586e75] shadow-lg rounded-lg'
                   : currentTheme === 'saas'
                     ? 'bg-white border border-slate-100 shadow-[0_10px_30px_rgba(99,102,241,0.08)] rounded-3xl'
-                    : 'bg-white/95 border border-slate-200 shadow-2xl rounded-2xl backdrop-blur-xl'
+                    : currentTheme === 'electric'
+                      ? 'bg-zinc-950 border border-emerald-500 shadow-[0_0_15px_rgba(40,255,133,0.15)] rounded-2xl'
+                      : 'bg-white/95 border border-slate-200 shadow-2xl rounded-2xl backdrop-blur-xl'
         ]"
       >
         <span 
@@ -113,14 +120,18 @@ export default {
                     ? 'bg-white/20 text-white rounded-xl'
                     : currentTheme === 'solarized'
                       ? 'bg-[#2aa198]/20 text-[#2aa198] rounded-md'
-                      : 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 rounded-xl')
+                      : currentTheme === 'electric'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-xl'
+                        : 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 rounded-xl')
               : (currentTheme === 'retro'
                   ? 'hover:bg-white/10 text-black font-medium'
                   : currentTheme === 'fluent'
                     ? 'hover:bg-white/10 text-white/70 hover:text-white rounded-xl'
                     : currentTheme === 'solarized'
                       ? 'hover:bg-white/5 text-[#839496] hover:text-[#93a1a1] rounded-md'
-                      : 'hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white rounded-xl')
+                      : currentTheme === 'electric'
+                        ? 'hover:bg-emerald-500/10 text-emerald-400 rounded-xl'
+                        : 'hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white rounded-xl')
           ]"
         >
           <svg 
@@ -153,7 +164,9 @@ export default {
             ? 'bg-white/10 border border-white/12 text-white backdrop-blur-md rounded-full shadow-lg hover:scale-105'
             : currentTheme === 'solarized'
               ? 'bg-[#073642] border border-[#586e75] text-[#2aa198] rounded-md hover:bg-[#0b4554]'
-              : 'bg-slate-950 text-white dark:bg-white dark:text-slate-950 rounded-full shadow-lg hover:scale-110'
+              : currentTheme === 'electric'
+                ? 'bg-zinc-950 border border-emerald-500 text-emerald-400 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:scale-110 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]'
+                : 'bg-slate-950 text-white dark:bg-white dark:text-slate-950 rounded-full shadow-lg hover:scale-110'
       ]"
     >
       <svg 

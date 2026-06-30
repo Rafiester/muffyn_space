@@ -37,6 +37,7 @@ const emit = defineEmits<{
           <option value="fluent" class="bg-slate-900 text-white">Fluent Design (Glassmorphism)</option>
           <option value="saas" class="bg-slate-900 text-white">SaaS Modern</option>
           <option value="solarized" class="bg-slate-900 text-white">Solarized Dark</option>
+          <option value="electric" class="bg-slate-900 text-white">Electric Border</option>
         </select>
       </div>
 
