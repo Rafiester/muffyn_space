@@ -6,7 +6,6 @@ interface LinkItem {
   url: string;
   icon: string;
   featured: boolean;
-  accentColor?: string;
   is_active?: boolean;
 }
 
@@ -185,30 +184,15 @@ const onFileInput = (e: Event) => {
         </span>
       </div>
 
-      <div class="grid grid-cols-3 gap-2">
-        <div class="col-span-2">
-          <label class="block text-xs font-bold uppercase tracking-wide text-white/20 mb-1">Accent HEX Color</label>
-          <input
-            type="text"
-            :value="link.accentColor || ''"
-            @input="(e) => emit('linkChange', idx, 'accentColor', (e.target as HTMLInputElement).value)"
-            class="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-sm transition-all"
-            placeholder="#6366f1"
-            :disabled="isDragActive"
-          />
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wide text-white/20 mb-1 text-center">Featured</label>
-          <div class="flex justify-center pt-2">
-            <input
-              type="checkbox"
-              :checked="link.featured"
-              @change="(e) => emit('linkChange', idx, 'featured', (e.target as HTMLInputElement).checked)"
-              class="w-4 h-4 rounded bg-white/[0.02] border-white/[0.06] accent-[#af413c] cursor-pointer"
-              :disabled="isDragActive"
-            />
-          </div>
-        </div>
+      <div class="flex items-center gap-3 pt-2">
+        <input
+          type="checkbox"
+          :checked="link.featured"
+          @change="(e) => emit('linkChange', idx, 'featured', (e.target as HTMLInputElement).checked)"
+          class="w-4 h-4 rounded bg-white/[0.02] border-white/[0.06] accent-[#af413c] cursor-pointer"
+          :disabled="isDragActive"
+        />
+        <label class="text-xs font-bold uppercase tracking-wide text-white/40">Featured Link</label>
       </div>
     </div>
   </div>

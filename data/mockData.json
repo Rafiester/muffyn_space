@@ -11,6 +11,9 @@
       "email": "mailto:alex@example.com"
     }
   },
+  "settings": {
+    "electricAccentColor": "#6366f1"
+  },
   "links": [
     {
       "id": "1",
@@ -18,8 +21,7 @@
       "description": "My latest work, case studies, and playground experiments.",
       "url": "https://example.com/portfolio",
       "icon": "globe",
-      "featured": true,
-      "accentColor": "#6366f1"
+      "featured": true
     },
     {
       "id": "2",
@@ -27,8 +29,7 @@
       "description": "In-depth articles about UX, Tailwind, and React compilation.",
       "url": "https://example.com/newsletter",
       "icon": "newsletter",
-      "featured": false,
-      "accentColor": "#ec4899"
+      "featured": false
     },
     {
       "id": "3",
@@ -36,8 +37,7 @@
       "description": "Weekly tutorials on Next.js, Framer Motion, and web dev tips.",
       "url": "https://youtube.com",
       "icon": "youtube",
-      "featured": false,
-      "accentColor": "#ef4444"
+      "featured": false
     },
     {
       "id": "4",
@@ -45,8 +45,7 @@
       "description": "Download free Tailwind UI components and Figma UI kits.",
       "url": "https://figma.com",
       "icon": "figma",
-      "featured": false,
-      "accentColor": "#0acf83"
+      "featured": false
     },
     {
       "id": "5",
@@ -54,8 +53,7 @@
       "description": "Check out my repositories, stars, and pull requests.",
       "url": "https://github.com",
       "icon": "github",
-      "featured": false,
-      "accentColor": "#171717"
+      "featured": false
     }
   ]
 }

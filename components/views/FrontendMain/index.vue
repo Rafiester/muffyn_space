@@ -24,7 +24,6 @@ interface LinkItem {
   url: string;
   icon: string;
   featured: boolean;
-  accentColor?: string;
 }
 
 interface DbLink {
@@ -36,14 +35,13 @@ interface DbLink {
   is_active: boolean;
   sort_order: number;
   featured?: boolean;
-  accent_color?: string;
-  accentColor?: string;
 }
 
 const theme = ref<Theme>('clean-light');
 const mounted = ref(false);
 const profile = ref<Profile | null>(null);
 const links = ref<LinkItem[]>([]);
+const electricAccentColor = ref<string>('#6366f1');
 const loading = ref(true);
 const error = ref<string | null>(null);
 
@@ -69,6 +67,16 @@ onMounted(async () => {
       const loadedProfile = localProfile ? JSON.parse(localProfile) : profileData.profile;
       profile.value = loadedProfile;
       links.value = localLinks ? JSON.parse(localLinks) : profileData.links;
+      
+      const localSettings = localStorage.getItem('cms-settings');
+      if (localSettings) {
+        const parsedSettings = JSON.parse(localSettings);
+        if (parsedSettings.electricAccentColor) {
+          electricAccentColor.value = parsedSettings.electricAccentColor;
+        }
+      } else if (profileData.settings?.electricAccentColor) {
+        electricAccentColor.value = profileData.settings.electricAccentColor;
+      }
       
       const activeTheme = loadedProfile.active_theme || loadedProfile.activeTheme;
       const savedTheme = localStorage.getItem('user-theme') as Theme;
@@ -106,6 +114,19 @@ onMounted(async () => {
         };
         profile.value = mappedProfile;
 
+        // Try load settings from local storage as well for mock DB consistency, or from DB if available
+        const localSettings = localStorage.getItem('cms-settings');
+        if (localSettings) {
+          const parsedSettings = JSON.parse(localSettings);
+          if (parsedSettings.electricAccentColor) {
+            electricAccentColor.value = parsedSettings.electricAccentColor;
+          }
+        } else if (profileDataDb.electric_accent_color) {
+          electricAccentColor.value = profileDataDb.electric_accent_color;
+        } else if (profileData.settings?.electricAccentColor) {
+          electricAccentColor.value = profileData.settings.electricAccentColor;
+        }
+
         // Apply active theme
         const activeTheme = profileDataDb.active_theme as Theme;
         let targetTheme: Theme = 'clean-light';
@@ -137,8 +158,7 @@ onMounted(async () => {
             description: link.description || '',
             url: link.url,
             icon: link.icon_name,
-            featured: link.featured || false,
-            accentColor: link.accent_color || link.accentColor || undefined
+            featured: link.featured || false
           }));
           links.value = mappedLinks;
         }
@@ -182,7 +202,7 @@ onMounted(async () => {
 
       <!-- Dynamic Link List -->
       <section :class="['w-full flex flex-col mb-12 mt-4', theme === 'electric' ? 'gap-0 electric-list' : 'gap-4']">
-        <LinkCard v-for="link in links" :key="link.id" :link="link" :theme="theme" />
+        <LinkCard v-for="link in links" :key="link.id" :link="link" :theme="theme" :electricAccentColor="electricAccentColor" />
       </section>
     </main>
 

@@ -5,6 +5,7 @@ interface Settings {
   active_theme: Theme;
   meta_title?: string;
   meta_description?: string;
+  electricAccentColor?: string;
 }
 
 defineProps<{
@@ -39,6 +40,17 @@ const emit = defineEmits<{
           <option value="solarized" class="bg-slate-900 text-white">Solarized Dark</option>
           <option value="electric" class="bg-slate-900 text-white">Electric Border</option>
         </select>
+      </div>
+      <div v-if="settings.active_theme === 'electric'">
+        <label class="block text-xs font-bold uppercase tracking-wider text-white/25 mb-2" for="electric-accent">Electric Theme Accent Color</label>
+        <input
+          id="electric-accent"
+          type="text"
+          :value="settings.electricAccentColor || ''"
+          @input="(e) => emit('change', 'electricAccentColor', (e.target as HTMLInputElement).value)"
+          class="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-sm transition-all"
+          placeholder="#6366f1"
+        />
       </div>
 
       <div>

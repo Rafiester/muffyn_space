@@ -29,6 +29,7 @@ interface Profile {
     email: string;
     meta_title?: string;
     meta_description?: string;
+    electricAccentColor?: string;
   };
 }
 
@@ -39,7 +40,6 @@ interface LinkItem {
   url: string;
   icon: string;
   featured: boolean;
-  accentColor?: string;
   is_active?: boolean;
 }
 
@@ -50,7 +50,6 @@ interface DbLinkItem {
   url: string;
   icon_name?: string;
   featured?: boolean;
-  accent_color?: string;
   is_active?: boolean;
 }
 
@@ -128,6 +127,7 @@ onMounted(() => {
           active_theme: parsed.active_theme || parsed.activeTheme || 'clean-light',
           meta_title: parsed.meta_title || '',
           meta_description: parsed.meta_description || '',
+          electricAccentColor: parsed.electricAccentColor || undefined,
           socials: parsed.socials || { github: '', twitter: '', linkedin: '', email: '' }
         };
       } else {
@@ -136,6 +136,7 @@ onMounted(() => {
           active_theme: 'clean-light',
           meta_title: '',
           meta_description: '',
+          electricAccentColor: profileData.settings?.electricAccentColor || undefined,
           socials: profileData.profile.socials || { github: '', twitter: '', linkedin: '', email: '' }
         } as Profile;
       }
@@ -169,6 +170,7 @@ onMounted(() => {
           active_theme: dbProfile.active_theme || 'clean-light',
           meta_title: rawSocials.meta_title || '',
           meta_description: rawSocials.meta_description || '',
+          electricAccentColor: dbProfile.electric_accent_color || profileData.settings?.electricAccentColor || undefined,
           socials: {
             github: rawSocials.github || '',
             twitter: rawSocials.twitter || '',
@@ -193,7 +195,6 @@ onMounted(() => {
             url: link.url || '',
             icon: link.icon_name || 'globe',
             featured: link.featured || false,
-            accentColor: link.accent_color || undefined,
             is_active: link.is_active !== false
           }));
         }
@@ -206,6 +207,7 @@ onMounted(() => {
         active_theme: 'clean-light',
         meta_title: '',
         meta_description: '',
+        electricAccentColor: profileData.settings?.electricAccentColor || undefined,
         socials: profileData.profile.socials || { github: '', twitter: '', linkedin: '', email: '' }
       } as Profile;
       links.value = profileData.links.map(l => ({ ...l, is_active: true }));
@@ -228,7 +230,7 @@ const handleProfileChange = (key: keyof Profile, value: any) => {
 
 // Handle updates to settings fields (theme & meta)
 const handleSettingsChange = (
-  key: 'active_theme' | 'meta_title' | 'meta_description',
+  key: 'active_theme' | 'meta_title' | 'meta_description' | 'electricAccentColor',
   value: string
 ) => {
   profile.value = {
@@ -314,6 +316,7 @@ const saveAllChanges = async () => {
         bio: profile.value.bio,
         avatar_url: profile.value.avatar,
         active_theme: profile.value.active_theme,
+        electric_accent_color: profile.value.electricAccentColor || null,
         socials: updatedSocials
       })
       .eq('id', profileId.value);
@@ -349,7 +352,6 @@ const saveAllChanges = async () => {
         url: link.url,
         icon_name: link.icon,
         featured: link.featured,
-        accent_color: link.accentColor || null,
         is_active: link.is_active !== false,
         sort_order: i
       };
@@ -384,7 +386,6 @@ const saveAllChanges = async () => {
         url: link.url || '',
         icon: link.icon_name || 'globe',
         featured: link.featured || false,
-        accentColor: link.accent_color || undefined,
         is_active: link.is_active !== false
       }));
     }

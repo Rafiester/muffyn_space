@@ -9,22 +9,24 @@ interface LinkItem {
   url: string;
   icon: string;
   featured: boolean;
-  accentColor?: string;
 }
 
 const props = defineProps<{
   link: LinkItem;
   theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized' | 'electric';
+  electricAccentColor?: string;
 }>();
 
 const isRetro = computed(() => props.theme === 'retro');
 const isDark = computed(() => ['pitch-dark', 'solarized', 'fluent', 'electric'].includes(props.theme));
 
+const activeAccentColor = computed(() => props.theme === 'electric' ? props.electricAccentColor : undefined);
+
 const customGlowStyle = computed(() => {
-  if (!isRetro.value && props.link.accentColor) {
+  if (activeAccentColor.value) {
     return {
-      '--hover-glow': `${props.link.accentColor}1c`, // hex + 11% opacity
-      '--hover-border': props.link.accentColor
+      '--hover-glow': `${activeAccentColor.value}1c`, // hex + 11% opacity
+      '--hover-border': activeAccentColor.value
     } as Record<string, string>;
   }
   return {};
@@ -41,7 +43,7 @@ const isCustomIcon = computed(() => {
   <div :class="theme === 'electric' ? 'w-full py-[60px]' : 'w-full'">
     <component
       :is="theme === 'electric' ? ElectricBorder : 'div'"
-      v-bind="theme === 'electric' ? { color: link.accentColor || '#10b981', borderRadius: 16, chaos: 0.12, style: { borderRadius: '16px' } } : {}"
+      v-bind="theme === 'electric' ? { color: activeAccentColor || '#10b981', borderRadius: 16, chaos: 0.12, style: { borderRadius: '16px' } } : {}"
       class="w-full"
     >
     <a
@@ -82,7 +84,7 @@ const isCustomIcon = computed(() => {
                 ? 'bg-slate-950 text-slate-100 rounded-xl'
                 : 'bg-slate-100 text-slate-800 rounded-xl'
           ]"
-          :style="!isRetro && link.accentColor ? { color: link.accentColor, backgroundColor: `${link.accentColor}12` } : {}"
+          :style="activeAccentColor ? { color: activeAccentColor, backgroundColor: `${activeAccentColor}12` } : {}"
         >
           <!-- Custom uploaded icon rendering -->
           <img v-if="isCustomIcon" :src="link.icon" alt="" class="w-5 h-5 object-contain rounded" />
@@ -203,10 +205,10 @@ const isCustomIcon = computed(() => {
 
       <!-- Modern Minimalist Soft Glow Overlay -->
       <div 
-        v-if="!isRetro && link.accentColor"
+        v-if="activeAccentColor"
         class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         :style="{
-          background: `radial-gradient(circle at 10% 20%, ${link.accentColor}0a 0%, transparent 50%)`
+          background: `radial-gradient(circle at 10% 20%, ${activeAccentColor}0a 0%, transparent 50%)`
         }"
       />
     </a>

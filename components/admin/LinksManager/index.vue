@@ -9,7 +9,6 @@ interface LinkItem {
   url: string;
   icon: string;
   featured: boolean;
-  accentColor?: string;
   is_active?: boolean;
 }
 
