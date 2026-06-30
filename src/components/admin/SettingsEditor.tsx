@@ -16,9 +16,10 @@ interface SettingsEditorProps {
 export default function SettingsEditor({ settings, onChange }: SettingsEditorProps) {
   return (
     <div className="bg-white/[0.02] border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm">
-      <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-white/30 mb-6 flex items-center gap-2">
-        Experience Settings & SEO
-      </h2>
+      <div className="mb-6">
+        <h2 className="text-base font-bold text-white tracking-tight">Experience Settings & SEO</h2>
+        <p className="text-xs text-white/30 mt-1">Adjust active visual theme style, meta title tags, and meta description fields.</p>
+      </div>
 
       <div className="space-y-5">
         <div>
