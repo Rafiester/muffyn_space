@@ -80,19 +80,11 @@ export default function ProfileEditor({ profile, onChange }: ProfileEditorProps)
               )}
             </div>
 
-            {/* Input field and Upload */}
+            {/* Upload actions and description */}
             <div className="flex-1 space-y-2">
               <div className="flex items-center gap-2">
-                <input
-                  id="avatar-url"
-                  type="text"
-                  value={profile.avatar}
-                  onChange={(e) => onChange('avatar', e.target.value)}
-                  className="flex-1 px-4 py-2.5 bg-white/[0.03] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-sm transition-all"
-                  placeholder="Paste image URL..."
-                />
                 <label className="px-4 py-2.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 text-white/80 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center shrink-0 h-10">
-                  <span>Upload File</span>
+                  <span>Upload Profile Avatar</span>
                   <input
                     type="file"
                     accept="image/*"
@@ -117,9 +109,19 @@ export default function ProfileEditor({ profile, onChange }: ProfileEditorProps)
                     }}
                   />
                 </label>
+
+                {profile.avatar && (
+                  <button
+                    type="button"
+                    onClick={() => onChange('avatar', '')}
+                    className="px-4 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 hover:border-rose-500/30 text-rose-400 rounded-xl text-xs font-bold transition-all h-10"
+                  >
+                    Remove Image
+                  </button>
+                )}
               </div>
               <span className="text-[10px] text-white/20 block">
-                Max size: 200KB. Square ratio (PNG/JPG/SVG) recommended.
+                Max size: 200KB. Square ratio (PNG/JPG/SVG) recommended. Only file uploads accepted.
               </span>
             </div>
           </div>
