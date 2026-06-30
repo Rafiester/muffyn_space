@@ -59,6 +59,8 @@ const handleCropSuccess = (base64: string) => {
   emit('change', 'avatar', base64);
   showCropper.value = false;
 };
+
+const showPreview = ref(false);
 </script>
 
 <template>
@@ -100,6 +102,16 @@ const handleCropSuccess = (base64: string) => {
               >
                 Remove Image
               </button>
+
+              <button
+                v-if="profile.avatar"
+                type="button"
+                @click="showPreview = true"
+                class="px-4 py-2.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 text-white/60 hover:text-white rounded-xl text-xs font-bold transition-all h-10 flex items-center gap-1.5"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+                View
+              </button>
             </div>
             <span class="text-[10px] text-white/20 block">
               Max size: 1MB. PNG/JPG formats supported. Crop size: 1024x1024.
@@ -107,6 +119,34 @@ const handleCropSuccess = (base64: string) => {
           </div>
         </div>
       </div>
+
+      <!-- Avatar Preview Modal -->
+      <Teleport to="body">
+        <Transition
+          enter-active-class="transition-all duration-200 ease-out"
+          enter-from-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-active-class="transition-all duration-150 ease-in"
+          leave-from-class="opacity-100"
+          leave-to-class="opacity-0"
+        >
+          <div 
+            v-if="showPreview && profile.avatar" 
+            class="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-6"
+            @click.self="showPreview = false"
+          >
+            <div class="relative max-w-sm w-full">
+              <img :src="profile.avatar" alt="Avatar Full Preview" class="w-full rounded-2xl shadow-2xl border border-white/10" />
+              <button 
+                @click="showPreview = false" 
+                class="absolute -top-3 -right-3 w-8 h-8 bg-zinc-900 border border-white/10 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-zinc-800 transition-all shadow-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+          </div>
+        </Transition>
+      </Teleport>
 
       <div>
         <label class="block text-xs font-bold uppercase tracking-wider text-white/25 mb-2" for="display-name">Display Name</label>
