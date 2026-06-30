@@ -425,12 +425,12 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import("./_nuxt/index-D3w5i6pj.js")
+    component: () => import("./_nuxt/index-DrqgHNnM.js")
   },
   {
     name: "th3w3b4dm1n",
     path: "/th3w3b4dm1n",
-    component: () => import("./_nuxt/index-CrC4rvGf.js")
+    component: () => import("./_nuxt/index-C7_lRhvi.js")
   },
   {
     name: "th3w3b4dm1n-login",

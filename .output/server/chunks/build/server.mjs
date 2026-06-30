@@ -433,12 +433,12 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-D3w5i6pj.mjs')
+    component: () => import('./index-DrqgHNnM.mjs')
   },
   {
     name: "th3w3b4dm1n",
     path: "/th3w3b4dm1n",
-    component: () => import('./index-CrC4rvGf.mjs')
+    component: () => import('./index-C7_lRhvi.mjs')
   },
   {
     name: "th3w3b4dm1n-login",

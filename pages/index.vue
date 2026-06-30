@@ -49,6 +49,24 @@ const error = ref<string | null>(null);
 
 const isRetro = computed(() => theme.value === 'retro');
 
+const themeColors: Record<Theme, string> = {
+  'clean-light': '#ffffff',
+  'pitch-dark': '#000000',
+  'retro': '#fde047',
+  'fluent': '#0f172a',
+  'solarized': '#002b36',
+  'electric': '#090d16'
+};
+
+useHead({
+  meta: [
+    {
+      name: 'theme-color',
+      content: computed(() => themeColors[theme.value] || '#ffffff')
+    }
+  ]
+});
+
 const handleThemeChange = (newTheme: Theme) => {
   theme.value = newTheme;
   localStorage.setItem('user-theme', newTheme);

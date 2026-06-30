@@ -112,7 +112,7 @@
 }
 
 html, body {
-  background-color: var(--bg-app);
+  background-color: var(--bg-app) !important;
   background-image: var(--bg-app-image, none);
   color: var(--text-body);
   font-family: var(--font-family-body);
