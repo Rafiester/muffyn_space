@@ -151,7 +151,7 @@ loadImage();
 
 <template>
   <div class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="bg-[#151419] border border-white/[0.08] rounded-3xl w-full max-w-md p-6 shadow-2xl flex flex-col text-white">
+    <div class="bg-[#151419] border border-white/[0.08] rounded-3xl w-full max-w-md p-6 shadow-2xl flex flex-col text-white max-h-[95vh] overflow-y-auto">
       
       <!-- Header -->
       <div class="flex justify-between items-center mb-5 pb-3 border-b border-white/[0.06]">
