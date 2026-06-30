@@ -488,7 +488,7 @@ const handleLogout = () => {
         </div>
 
         <!-- Unified Bottom Save Changes Button -->
-        <div v-if="activeTab !== 'dashboard'" class="mt-8 pt-6 border-t border-white/[0.04] flex justify-end pr-6">
+        <div v-if="activeTab !== 'dashboard'" class="mt-4 pt-4 border-t border-white/[0.04] flex justify-end pr-6">
           <button
             @click="saveAllChanges"
             :disabled="saving"
