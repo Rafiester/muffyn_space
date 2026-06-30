@@ -60,9 +60,8 @@ export default function AdminDashboard() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Tab & Drawer State — sidebar starts closed, user toggles it open
+  // Tab State
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Profile State
   const [profile, setProfile] = useState<Profile>({
@@ -421,24 +420,20 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {/* Sidebar Drawer — does NOT auto-hide on tab select */}
       <Sidebar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
         activeTab={activeTab}
         onTabSelect={setActiveTab}
         onLogout={handleLogout}
       />
 
-      {/* Main Workspace Frame — shifts right when sidebar is open */}
-      <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${isSidebarOpen ? 'lg:pl-64' : ''}`}>
+      {/* Main Workspace Frame — permanently offset by sidebar width (260px) */}
+      <div className="flex-1 flex flex-col min-h-screen pl-[260px]">
         
-        {/* Dynamic Header with burger toggle */}
+        {/* Dynamic Header */}
         <DashboardHeader 
           saving={saving} 
           onSave={saveAllChanges} 
           onLogout={handleLogout} 
-          onMenuToggle={() => setIsSidebarOpen(prev => !prev)} 
         />
 
         {/* Content Container */}

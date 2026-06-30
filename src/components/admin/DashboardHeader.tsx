@@ -4,26 +4,15 @@ interface DashboardHeaderProps {
   saving: boolean;
   onSave: () => void;
   onLogout: () => void;
-  onMenuToggle: () => void;
 }
 
-export default function DashboardHeader({ saving, onSave, onLogout, onMenuToggle }: DashboardHeaderProps) {
+export default function DashboardHeader({ saving, onSave, onLogout }: DashboardHeaderProps) {
   return (
     <header className="border-b border-white/[0.04] bg-[#1a1a24]/80 backdrop-blur-xl sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-        {/* Left: Burger + Brand */}
+        {/* Left: Brand */}
         <div className="flex items-center gap-3">
-          <button
-            onClick={onMenuToggle}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-white/35 hover:text-white/70 hover:bg-white/[0.06] border border-white/[0.06] transition-all"
-            title="Toggle Menu"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 bg-gradient-to-br from-[#c94a44] to-[#8b2e2a] rounded-lg flex items-center justify-center shadow-sm shadow-[#af413c]/20">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-white">
                 <rect x="3" y="3" width="7" height="7" rx="1.5" />
