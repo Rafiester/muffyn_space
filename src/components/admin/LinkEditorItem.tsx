@@ -178,7 +178,7 @@ export default function LinkEditorItem({
           </div>
           {/* File description text */}
           <span className="text-[10px] text-white/20 mt-1.5 block">
-            Max size: 100KB. Square ratio (PNG/JPG/SVG) recommended.
+            Max size: 100KB. Recommended dimensions: 64x64 pixels (PNG/JPG/SVG).
           </span>
         </div>
 
