@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/globals.css'],
   postcss: {
     plugins: {
-      '@tailwindcss/postcss': {},
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
   compatibilityDate: '2024-04-03'
