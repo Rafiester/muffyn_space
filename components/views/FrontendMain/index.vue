@@ -129,6 +129,12 @@ onMounted(async () => {
         if (profileData.settings?.activeTheme) theme.value = profileData.settings.activeTheme as Theme;
       }
 
+      if (localLinks) {
+        links.value = JSON.parse(localLinks);
+      } else {
+        links.value = profileData.links;
+      }
+
       const localSettings = localStorage.getItem('cms-settings');
       if (localSettings) {
         const parsedSettings = JSON.parse(localSettings);
@@ -139,6 +145,7 @@ onMounted(async () => {
         electricAccentColor.value = profileData.settings.electricAccentColor;
       }
       
+      const activeTheme = profile.value?.active_theme || profileData.settings?.activeTheme as Theme;
       const savedTheme = localStorage.getItem('user-theme') as Theme;
       const initialTheme = (savedTheme && allowedThemes.includes(savedTheme))
         ? savedTheme
