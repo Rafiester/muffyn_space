@@ -390,9 +390,9 @@ export default function AdminDashboard() {
 
   if (!mounted || loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center gap-4">
-        <div className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-xs font-bold uppercase tracking-widest text-slate-500 animate-pulse">Loading CMS Panel...</p>
+      <div className="min-h-screen bg-[#1e1d23] flex flex-col items-center justify-center gap-4">
+        <div className="w-10 h-10 border-4 border-[#af413c] border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-xs font-bold uppercase tracking-widest text-white/30 animate-pulse">Loading CMS Panel...</p>
       </div>
     );
   }
@@ -407,7 +407,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#181820] text-slate-100 flex font-sans">
+    <div className="min-h-screen bg-[#1e1d23] text-slate-100 flex font-sans">
       {/* Toast Alert */}
       {toast && (
         <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 animate-bounce">

@@ -29,16 +29,16 @@ export default function LinkEditorItem({
   onDeleteLink
 }: LinkEditorItemProps) {
   return (
-    <div className="p-4 bg-slate-900/40 border border-slate-800/80 hover:border-slate-800 rounded-2xl transition-all space-y-4">
+    <div className="p-4 bg-white/[0.01] border border-white/[0.03] hover:border-white/[0.06] rounded-xl transition-all space-y-4">
       {/* Header bar of link panel */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-800/60">
+      <div className="flex items-center justify-between pb-3 border-b border-white/[0.04]">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold text-slate-500">#{idx + 1}</span>
+          <span className="text-[10px] font-bold text-white/20">#{idx + 1}</span>
           <input
             type="text"
             value={link.title}
             onChange={(e) => onLinkChange(idx, 'title', e.target.value)}
-            className="bg-transparent border-b border-transparent hover:border-slate-700 focus:border-indigo-500 text-sm font-bold text-white outline-none pb-0.5"
+            className="bg-transparent border-b border-transparent hover:border-white/20 focus:border-[#af413c]/50 text-sm font-bold text-white outline-none pb-0.5"
             placeholder="Link Title"
           />
         </div>
@@ -49,7 +49,7 @@ export default function LinkEditorItem({
           <button
             onClick={() => onMoveLink(idx, 'up')}
             disabled={idx === 0}
-            className="p-1 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white disabled:opacity-20 transition-colors"
+            className="p-1 hover:bg-white/[0.04] rounded-lg text-white/30 hover:text-white disabled:opacity-20 transition-colors"
             title="Move Up"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
@@ -59,7 +59,7 @@ export default function LinkEditorItem({
           <button
             onClick={() => onMoveLink(idx, 'down')}
             disabled={idx === totalLinks - 1}
-            className="p-1 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white disabled:opacity-20 transition-colors"
+            className="p-1 hover:bg-white/[0.04] rounded-lg text-white/30 hover:text-white disabled:opacity-20 transition-colors"
             title="Move Down"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
@@ -73,7 +73,7 @@ export default function LinkEditorItem({
             className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-md border transition-all ${
               (link.is_active ?? true)
                 ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-                : 'bg-slate-800 border-slate-700 text-slate-500'
+                : 'bg-white/[0.04] border-white/[0.06] text-white/30'
             }`}
           >
             {(link.is_active ?? true) ? 'Active' : 'Hidden'}
@@ -82,7 +82,7 @@ export default function LinkEditorItem({
           {/* Delete link */}
           <button
             onClick={() => onDeleteLink(idx)}
-            className="p-1 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 text-slate-400 hover:text-rose-400 rounded-lg transition-all ml-1"
+            className="p-1 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 text-white/30 hover:text-rose-400 rounded-lg transition-all ml-1"
             title="Delete Link"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
@@ -95,33 +95,33 @@ export default function LinkEditorItem({
       {/* Inputs panel */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 mb-1">Description</label>
+          <label className="block text-[10px] font-bold uppercase tracking-wide text-white/20 mb-1">Description</label>
           <input
             type="text"
             value={link.description}
             onChange={(e) => onLinkChange(idx, 'description', e.target.value)}
-            className="w-full px-3 py-2 bg-slate-950/60 border border-slate-800 focus:border-indigo-500/80 rounded-xl outline-none text-white text-xs transition-all"
+            className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-xs transition-all"
             placeholder="Subtitle text"
           />
         </div>
 
         <div>
-          <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 mb-1">Destination URL</label>
+          <label className="block text-[10px] font-bold uppercase tracking-wide text-white/20 mb-1">Destination URL</label>
           <input
             type="text"
             value={link.url}
             onChange={(e) => onLinkChange(idx, 'url', e.target.value)}
-            className="w-full px-3 py-2 bg-slate-950/60 border border-slate-800 focus:border-indigo-500/80 rounded-xl outline-none text-white text-xs transition-all"
+            className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-xs transition-all"
             placeholder="https://..."
           />
         </div>
 
         <div>
-          <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 mb-1">Icon Category</label>
+          <label className="block text-[10px] font-bold uppercase tracking-wide text-white/20 mb-1">Icon Category</label>
           <select
             value={link.icon}
             onChange={(e) => onLinkChange(idx, 'icon', e.target.value)}
-            className="w-full px-3 py-2 bg-slate-950/60 border border-slate-800 focus:border-indigo-500/80 rounded-xl outline-none text-white text-xs transition-all"
+            className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-xs transition-all"
           >
             <option value="globe">Globe (Website)</option>
             <option value="youtube">YouTube</option>
@@ -133,23 +133,23 @@ export default function LinkEditorItem({
 
         <div className="grid grid-cols-3 gap-2">
           <div className="col-span-2">
-            <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 mb-1">Accent HEX Color</label>
+            <label className="block text-[10px] font-bold uppercase tracking-wide text-white/20 mb-1">Accent HEX Color</label>
             <input
               type="text"
               value={link.accentColor || ''}
               onChange={(e) => onLinkChange(idx, 'accentColor', e.target.value)}
-              className="w-full px-3 py-2 bg-slate-950/60 border border-slate-800 focus:border-indigo-500/80 rounded-xl outline-none text-white text-xs transition-all"
+              className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-xs transition-all"
               placeholder="#6366f1"
             />
           </div>
           <div>
-            <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-500 mb-1 text-center">Featured</label>
+            <label className="block text-[10px] font-bold uppercase tracking-wide text-white/20 mb-1 text-center">Featured</label>
             <div className="flex justify-center pt-2">
               <input
                 type="checkbox"
                 checked={link.featured}
                 onChange={(e) => onLinkChange(idx, 'featured', e.target.checked)}
-                className="w-4 h-4 rounded bg-slate-950/60 border-slate-800 accent-indigo-500 cursor-pointer"
+                className="w-4 h-4 rounded bg-white/[0.02] border-white/[0.06] accent-[#af413c] cursor-pointer"
               />
             </div>
           </div>

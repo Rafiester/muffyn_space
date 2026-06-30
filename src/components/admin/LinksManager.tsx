@@ -28,15 +28,15 @@ export default function LinksManager({
   onDeleteLink
 }: LinksManagerProps) {
   return (
-    <div className="bg-slate-950/40 border border-slate-900/60 p-6 rounded-3xl backdrop-blur-sm">
+    <div className="bg-[#1e1d23]/80 border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+        <h2 className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/30 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#af413c]" />
           Manage Links ({links.length})
         </h2>
         <button
           onClick={onAddLink}
-          className="px-3 py-1.5 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/20 hover:border-indigo-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1"
+          className="px-3 py-1.5 bg-[#af413c]/10 hover:bg-[#af413c]/20 text-[#e8736e] border border-[#af413c]/20 hover:border-[#af413c]/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -46,7 +46,7 @@ export default function LinksManager({
       </div>
 
       {links.length === 0 ? (
-        <div className="text-center py-12 border border-dashed border-slate-800 rounded-2xl text-slate-500 text-sm">
+        <div className="text-center py-12 border border-dashed border-white/[0.04] rounded-xl text-white/20 text-xs">
           No links created yet. Click &quot;Add Link&quot; to get started!
         </div>
       ) : (
