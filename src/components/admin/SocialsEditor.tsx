@@ -10,11 +10,9 @@ interface Socials {
 interface SocialsEditorProps {
   socials: Socials;
   onChange: (key: keyof Socials, value: string) => void;
-  onSave?: () => void;
-  saving?: boolean;
 }
 
-export default function SocialsEditor({ socials, onChange, onSave, saving = false }: SocialsEditorProps) {
+export default function SocialsEditor({ socials, onChange }: SocialsEditorProps) {
   return (
     <div className="bg-[#1e1d23]/80 border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm mt-6">
       <h2 className="text-xs font-bold uppercase tracking-[0.12em] !text-white/30 mb-6">
@@ -69,18 +67,6 @@ export default function SocialsEditor({ socials, onChange, onSave, saving = fals
             placeholder="hello@example.com"
           />
         </div>
-
-        {onSave && (
-          <div className="pt-2 flex justify-end">
-            <button
-              onClick={onSave}
-              disabled={saving}
-              className="px-4 py-2 bg-[#af413c] hover:bg-[#c94a44] disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-[#af413c]/10"
-            >
-              {saving ? 'Saving Socials...' : 'Save Social Accounts'}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

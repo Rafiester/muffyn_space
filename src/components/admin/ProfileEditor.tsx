@@ -19,11 +19,9 @@ interface Profile {
 interface ProfileEditorProps {
   profile: Profile;
   onChange: <K extends keyof Profile>(key: K, value: Profile[K]) => void;
-  onSave?: () => void;
-  saving?: boolean;
 }
 
-export default function ProfileEditor({ profile, onChange, onSave, saving = false }: ProfileEditorProps) {
+export default function ProfileEditor({ profile, onChange }: ProfileEditorProps) {
   return (
     <div className="bg-[#1e1d23]/80 border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm">
       <h2 className="text-xs font-bold uppercase tracking-[0.12em] !text-white/30 mb-6">
@@ -78,18 +76,6 @@ export default function ProfileEditor({ profile, onChange, onSave, saving = fals
             placeholder="https://images.unsplash.com/..."
           />
         </div>
-
-        {onSave && (
-          <div className="pt-2 flex justify-end">
-            <button
-              onClick={onSave}
-              disabled={saving}
-              className="px-4 py-2 bg-[#af413c] hover:bg-[#c94a44] disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-[#af413c]/10"
-            >
-              {saving ? 'Saving Profile...' : 'Save Profile Details'}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

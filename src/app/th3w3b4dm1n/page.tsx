@@ -439,31 +439,19 @@ export default function AdminDashboard() {
           
           {/* Active Title Block */}
           <div className="mb-2">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h2 className="text-2xl font-black !text-white tracking-tight">
-                  {activeTab === 'dashboard' && 'Dashboard'}
-                  {activeTab === 'about' && 'About me'}
-                  {activeTab === 'home' && 'Items'}
-                  {activeTab === 'settings' && 'Settings'}
-                </h2>
-                <p className="text-sm !text-slate-400 mt-1">
-                  {activeTab === 'dashboard' && 'Welcome to the administration panel.'}
-                  {activeTab === 'about' && 'Configure your About me content.'}
-                  {activeTab === 'home' && 'Configure your Items content.'}
-                  {activeTab === 'settings' && 'Configure your Settings content.'}
-                </p>
-              </div>
-              {/* Floating Publish Button inside Content Area */}
-              {activeTab !== 'dashboard' && (
-                <button
-                  onClick={saveAllChanges}
-                  disabled={saving}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#af413c] hover:bg-[#c94a44] disabled:opacity-50 transition-all flex items-center gap-1.5 shadow-md shadow-[#af413c]/20 shrink-0"
-                >
-                  {saving ? 'Saving...' : 'Publish Changes'}
-                </button>
-              )}
+            <div>
+              <h2 className="text-2xl font-black !text-white tracking-tight">
+                {activeTab === 'dashboard' && 'Dashboard'}
+                {activeTab === 'about' && 'About me'}
+                {activeTab === 'home' && 'Items'}
+                {activeTab === 'settings' && 'Settings'}
+              </h2>
+              <p className="text-sm !text-slate-400 mt-1">
+                {activeTab === 'dashboard' && 'Welcome to the administration panel.'}
+                {activeTab === 'about' && 'Configure your About me content.'}
+                {activeTab === 'home' && 'Configure your Items content.'}
+                {activeTab === 'settings' && 'Configure your Settings content.'}
+              </p>
             </div>
             <div className="border-b border-slate-900/60 my-3" />
           </div>
@@ -482,14 +470,10 @@ export default function AdminDashboard() {
               <ProfileEditor 
                 profile={profile} 
                 onChange={handleProfileChange} 
-                onSave={saveAllChanges}
-                saving={saving}
               />
               <SocialsEditor 
                 socials={profile.socials} 
                 onChange={handleSocialChange} 
-                onSave={saveAllChanges}
-                saving={saving}
               />
             </div>
           )}
@@ -517,9 +501,20 @@ export default function AdminDashboard() {
                   meta_description: profile.meta_description
                 }} 
                 onChange={handleSettingsChange} 
-                onSave={saveAllChanges}
-                saving={saving}
               />
+            </div>
+          )}
+
+          {/* Unified Bottom Save Changes Button */}
+          {activeTab !== 'dashboard' && (
+            <div className="mt-8 pt-6 border-t border-white/[0.04] flex justify-center">
+              <button
+                onClick={saveAllChanges}
+                disabled={saving}
+                className="px-6 py-2.5 bg-[#af413c] hover:bg-[#c94a44] disabled:opacity-50 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-[#af413c]/10 min-w-[140px]"
+              >
+                {saving ? 'Saving Changes...' : 'Save Changes'}
+              </button>
             </div>
           )}
 
