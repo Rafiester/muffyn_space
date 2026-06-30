@@ -48,7 +48,7 @@ onUnmounted(() => {
             </svg>
           </div>
           <div class="leading-none">
-            <div class="text-[14px] font-bold text-white/90 tracking-wide">CMS Space</div>
+            <div class="text-[14px] font-bold text-white/90 tracking-wide">Muffyn Space CMS</div>
             <div class="text-[11px] text-white/30 font-medium tracking-wider uppercase mt-0.5">CMS Panel</div>
           </div>
         </div>
