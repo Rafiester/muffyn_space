@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DeleteModal from './DeleteModal';
 
 interface LinkItem {
   id: string;
@@ -43,32 +44,13 @@ export default function LinkEditorItem({
         ? 'bg-white/[0.03] border-[#af413c]/30 cursor-grab active:cursor-grabbing hover:border-[#af413c]/50'
         : 'bg-white/[0.01] border-white/[0.03] hover:border-white/[0.06]'
     }`}>
-      {/* Fluent Modal Overlay */}
-      {showConfirm && (
-        <div className="absolute inset-0 bg-[#1e1d23]/98 backdrop-blur-md rounded-xl z-20 flex flex-col items-center justify-center p-4 text-center animate-fadeIn border border-rose-500/20">
-          <div className="w-10 h-10 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.34 9m-4.72 0-.34-9m9.96-3.243a3.003 3.003 0 0 0-3-2.731H12h-1.682a3.003 3.003 0 0 0-3 2.731M19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H8.25A2.25 2.25 0 0 1 6 18.75V14m12-6.875h-12" />
-            </svg>
-          </div>
-          <h3 className="text-sm font-bold text-white mb-1">Delete this item?</h3>
-          <p className="text-xs text-white/40 mb-4 max-w-[280px]">This action cannot be undone. Are you sure you want to delete this link?</p>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setShowConfirm(false)}
-              className="px-3.5 py-1.5 bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] text-white/60 hover:text-white text-xs font-semibold rounded-lg transition-all"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleConfirmDelete}
-              className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold rounded-lg shadow-lg shadow-rose-600/20 transition-all"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Centered screen-level Confirmation Popup Dialog */}
+      <DeleteModal
+        isOpen={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={handleConfirmDelete}
+        itemName={link.title || 'this link'}
+      />
 
       {/* Header bar of link panel */}
       <div className="flex items-center justify-between pb-3 border-b border-white/[0.04] gap-4">
