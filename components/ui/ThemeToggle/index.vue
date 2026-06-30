@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+import { computed } from 'vue';
+
 type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'solarized' | 'electric';
 
-defineProps<{
+const props = defineProps<{
   currentTheme: Theme;
+  electricAccentColor?: string;
 }>();
 
 const emit = defineEmits<{
@@ -21,6 +24,17 @@ const selectTheme = (t: Theme) => {
   emit('themeChange', t);
   isOpen.value = false;
 };
+
+const computedStyles = computed(() => {
+  const accent = props.electricAccentColor || '#10b981';
+  if (props.currentTheme !== 'electric') return {};
+  return {
+    '--accent-color': accent,
+    '--accent-color-hover': `${accent}1a`,
+    '--accent-color-active': `${accent}33`,
+    '--accent-color-glow': `${accent}40`,
+  };
+});
 
 const themeOptions: { value: Theme; label: string; iconPath: string; viewBox?: string }[] = [
   {
@@ -64,7 +78,7 @@ export default {
 </script>
 
 <template>
-  <div class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
+  <div class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3" :style="computedStyles">
     
     <!-- Expanded panel -->
     <Transition
@@ -88,7 +102,7 @@ export default {
                 : currentTheme === 'solarized'
                   ? 'bg-[#073642] border border-[#586e75] shadow-lg rounded-lg'
                   : currentTheme === 'electric'
-                    ? 'bg-zinc-950 border border-emerald-500 shadow-[0_0_15px_rgba(40,255,133,0.15)] rounded-2xl'
+                    ? 'bg-zinc-950 border rounded-2xl theme-electric-panel'
                     : 'bg-white/95 border border-slate-200 shadow-2xl rounded-2xl backdrop-blur-xl'
         ]"
       >
@@ -115,7 +129,7 @@ export default {
                     : currentTheme === 'solarized'
                       ? 'bg-[#2aa198]/20 text-[#2aa198] rounded-md'
                       : currentTheme === 'electric'
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-xl'
+                        ? 'theme-electric-btn-active border rounded-xl'
                         : 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 rounded-xl')
               : (currentTheme === 'retro'
                   ? 'hover:bg-white/10 text-black font-medium'
@@ -124,7 +138,7 @@ export default {
                     : currentTheme === 'solarized'
                       ? 'hover:bg-white/5 text-[#839496] hover:text-[#93a1a1] rounded-md'
                       : currentTheme === 'electric'
-                        ? 'hover:bg-emerald-500/10 text-emerald-400 rounded-xl'
+                        ? 'theme-electric-btn-hover rounded-xl'
                         : 'hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white rounded-xl')
           ]"
         >
@@ -159,7 +173,7 @@ export default {
             : currentTheme === 'solarized'
               ? 'bg-[#073642] border border-[#586e75] text-[#2aa198] rounded-md hover:bg-[#0b4554]'
               : currentTheme === 'electric'
-                ? 'bg-zinc-950 border border-emerald-500 text-emerald-400 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:scale-110 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)]'
+                ? 'bg-zinc-950 border rounded-full hover:scale-110 theme-electric-trigger'
                 : 'bg-slate-950 text-white dark:bg-white dark:text-slate-950 rounded-full shadow-lg hover:scale-110'
       ]"
     >
@@ -193,3 +207,27 @@ export default {
     />
   </Teleport>
 </template>
+
+<style scoped>
+.theme-electric-panel {
+  border-color: var(--accent-color, #10b981) !important;
+  box-shadow: 0 0 15px var(--accent-color-glow, rgba(16, 185, 129, 0.15)) !important;
+}
+.theme-electric-btn-active {
+  background-color: var(--accent-color-active, rgba(16, 185, 129, 0.2)) !important;
+  color: var(--accent-color, #10b981) !important;
+  border-color: var(--accent-color-glow, rgba(16, 185, 129, 0.3)) !important;
+}
+.theme-electric-btn-hover:hover {
+  background-color: var(--accent-color-hover, rgba(16, 185, 129, 0.1)) !important;
+  color: var(--accent-color, #10b981) !important;
+}
+.theme-electric-trigger {
+  border-color: var(--accent-color, #10b981) !important;
+  color: var(--accent-color, #10b981) !important;
+  box-shadow: 0 0 15px var(--accent-color-glow, rgba(16, 185, 129, 0.25)) !important;
+}
+.theme-electric-trigger:hover {
+  box-shadow: 0 0 25px var(--accent-color, #10b981) !important;
+}
+</style>

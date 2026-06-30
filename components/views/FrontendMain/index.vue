@@ -262,7 +262,7 @@ onMounted(async () => {
   
   <div v-else :class="['min-h-screen w-full relative flex flex-col items-center justify-between pb-12 pt-6 transition-all duration-300', isRetro ? 'retro-grid' : '']">
     <!-- Floating Theme Switcher (bottom-right FAB) -->
-    <ThemeToggle :currentTheme="theme" @theme-change="handleThemeChange" />
+    <ThemeToggle :currentTheme="theme" :electricAccentColor="electricAccentColor" @theme-change="handleThemeChange" />
 
     <!-- Main Link-in-Bio Container -->
     <main class="w-full max-w-xl px-4 flex-1 flex flex-col items-center">
