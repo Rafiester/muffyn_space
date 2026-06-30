@@ -111,8 +111,8 @@
   --accent-glow: rgba(16, 185, 129, 0.1);
 }
 
-html, body {
-  background-color: var(--bg-app) !important;
+body {
+  background-color: var(--bg-app);
   background-image: var(--bg-app-image, none);
   color: var(--text-body);
   font-family: var(--font-family-body);
