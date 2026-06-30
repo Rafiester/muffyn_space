@@ -441,6 +441,22 @@ export default function AdminDashboard() {
         {/* Content Container */}
         <main className="max-w-full w-full mx-auto px-6 py-10 flex-1 flex flex-col justify-start">
           
+          {/* Active Title Block */}
+          <div className="mb-6">
+            <h2 className="text-2xl font-black text-white tracking-tight">
+              {activeTab === 'dashboard' && 'Dashboard'}
+              {activeTab === 'about' && 'About me'}
+              {activeTab === 'home' && 'Items'}
+              {activeTab === 'settings' && 'Settings'}
+            </h2>
+            <p className="text-sm text-slate-400 mt-1">
+              {activeTab === 'dashboard' && 'Welcome to the administration panel.'}
+              {activeTab === 'about' && 'Configure your About me content.'}
+              {activeTab === 'home' && 'Configure your Items content.'}
+              {activeTab === 'settings' && 'Configure your Settings content.'}
+            </p>
+            <div className="border-b border-slate-900/60 my-5" />
+          </div>
 
           {/* Tab Panels */}
           {activeTab === 'dashboard' && (

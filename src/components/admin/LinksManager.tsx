@@ -85,10 +85,9 @@ export default function LinksManager({
   return (
     <div className="bg-[#1e1d23]/80 border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm">
       <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-base font-bold text-white tracking-tight">Manage Links ({links.length})</h2>
-          <p className="text-xs text-white/30 mt-1">Create, edit, reorder, or feature portfolio showcase links on your link-in-bio page.</p>
-        </div>
+        <h2 className="text-xs font-bold uppercase tracking-[0.12em] text-white/30 flex items-center gap-2">
+          Manage Links ({links.length})
+        </h2>
         <div className="flex items-center gap-2 shrink-0">
           {/* Unified single Reorder toggle button on the left of + Add link */}
           <button
