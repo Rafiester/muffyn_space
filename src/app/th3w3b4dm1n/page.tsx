@@ -442,7 +442,7 @@ export default function AdminDashboard() {
         />
 
         {/* Content Container */}
-        <main className="max-w-4xl w-full mx-auto px-6 py-10 flex-1 flex flex-col justify-start">
+        <main className="max-w-full w-full mx-auto px-6 py-10 flex-1 flex flex-col justify-start">
           
           {/* Active Title Block */}
           <div className="mb-6">
