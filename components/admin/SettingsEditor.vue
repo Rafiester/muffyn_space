@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Theme = 'minimalist' | 'minimalist-dark' | 'retro';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
 
 interface Settings {
   active_theme: Theme;
@@ -31,9 +31,12 @@ const emit = defineEmits<{
           @change="(e) => emit('change', 'active_theme', (e.target as HTMLSelectElement).value)"
           class="w-full px-4 py-2.5 bg-white/[0.03] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-sm transition-all"
         >
-          <option value="minimalist">Minimalist (Light)</option>
-          <option value="minimalist-dark">Minimalist (Dark)</option>
-          <option value="retro">Retro Terminal (Classic)</option>
+          <option value="clean-light" class="bg-slate-900 text-white">Clean Light (Default)</option>
+          <option value="pitch-dark" class="bg-slate-900 text-white">Pitch Dark</option>
+          <option value="retro" class="bg-slate-900 text-white">90s Retro</option>
+          <option value="fluent" class="bg-slate-900 text-white">Fluent Design (Glassmorphism)</option>
+          <option value="saas" class="bg-slate-900 text-white">SaaS Modern</option>
+          <option value="solarized" class="bg-slate-900 text-white">Solarized Dark</option>
         </select>
       </div>
 

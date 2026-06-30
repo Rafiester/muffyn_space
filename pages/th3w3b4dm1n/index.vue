@@ -11,7 +11,7 @@ import SettingsEditor from '../../components/admin/SettingsEditor.vue';
 import Sidebar from '../../components/admin/Sidebar.vue';
 import DeleteModal from '../../components/admin/DeleteModal.vue';
 
-type Theme = 'minimalist' | 'minimalist-dark' | 'retro';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
 type TabType = 'dashboard' | 'home' | 'about' | 'settings';
 
 interface Profile {
@@ -69,7 +69,7 @@ const profile = ref<Profile>({
   title: '',
   bio: '',
   avatar: '',
-  active_theme: 'minimalist',
+  active_theme: 'clean-light',
   meta_title: '',
   meta_description: '',
   socials: { github: '', twitter: '', linkedin: '', email: '' }
@@ -111,7 +111,7 @@ onMounted(() => {
           title: parsed.title || '',
           bio: parsed.bio || '',
           avatar: parsed.avatar || '',
-          active_theme: parsed.active_theme || parsed.activeTheme || 'minimalist',
+          active_theme: parsed.active_theme || parsed.activeTheme || 'clean-light',
           meta_title: parsed.meta_title || '',
           meta_description: parsed.meta_description || '',
           socials: parsed.socials || { github: '', twitter: '', linkedin: '', email: '' }
@@ -119,7 +119,7 @@ onMounted(() => {
       } else {
         profile.value = {
           ...profileData.profile,
-          active_theme: 'minimalist',
+          active_theme: 'clean-light',
           meta_title: '',
           meta_description: '',
           socials: profileData.profile.socials || { github: '', twitter: '', linkedin: '', email: '' }
@@ -152,7 +152,7 @@ onMounted(() => {
           title: dbProfile.title || '',
           bio: dbProfile.bio || '',
           avatar: dbProfile.avatar_url || '',
-          active_theme: dbProfile.active_theme || 'minimalist',
+          active_theme: dbProfile.active_theme || 'clean-light',
           meta_title: rawSocials.meta_title || '',
           meta_description: rawSocials.meta_description || '',
           socials: {
@@ -189,7 +189,7 @@ onMounted(() => {
       showToast(`Failed loading Supabase data: ${errMsg}`, 'error');
       profile.value = {
         ...profileData.profile,
-        active_theme: 'minimalist',
+        active_theme: 'clean-light',
         meta_title: '',
         meta_description: '',
         socials: profileData.profile.socials || { github: '', twitter: '', linkedin: '', email: '' }

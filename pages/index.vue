@@ -7,7 +7,7 @@ import ProfileHeader from '../components/profile/ProfileHeader.vue';
 import ProfileFooter from '../components/profile/ProfileFooter.vue';
 import { supabase, hasSupabaseConfig } from '../lib/supabase';
 
-type Theme = 'minimalist' | 'minimalist-dark' | 'retro' | 'electric';
+type Theme = 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized';
 
 interface Profile {
   name: string;
@@ -40,7 +40,7 @@ interface DbLink {
   accentColor?: string;
 }
 
-const theme = ref<Theme>('minimalist');
+const theme = ref<Theme>('clean-light');
 const mounted = ref(false);
 const profile = ref<Profile | null>(null);
 const links = ref<LinkItem[]>([]);
@@ -56,7 +56,7 @@ const handleThemeChange = (newTheme: Theme) => {
 };
 
 onMounted(async () => {
-  const allowedThemes: Theme[] = ['minimalist', 'minimalist-dark', 'retro', 'electric'];
+  const allowedThemes: Theme[] = ['clean-light', 'pitch-dark', 'retro', 'fluent', 'saas', 'solarized'];
 
   async function loadData() {
     if (!hasSupabaseConfig || !supabase) {
@@ -74,7 +74,7 @@ onMounted(async () => {
         ? savedTheme
         : (activeTheme && allowedThemes.includes(activeTheme))
           ? activeTheme
-          : 'minimalist';
+          : 'clean-light';
       theme.value = initialTheme;
       document.documentElement.setAttribute('data-theme', initialTheme);
       
@@ -106,7 +106,7 @@ onMounted(async () => {
 
         // Apply active theme
         const activeTheme = profileDataDb.active_theme as Theme;
-        let targetTheme: Theme = 'minimalist';
+        let targetTheme: Theme = 'clean-light';
         const savedTheme = localStorage.getItem('user-theme') as Theme;
         
         if (savedTheme && allowedThemes.includes(savedTheme)) {
@@ -150,7 +150,7 @@ onMounted(async () => {
       links.value = profileData.links;
       
       const savedTheme = localStorage.getItem('user-theme') as Theme;
-      const initialTheme = (savedTheme && allowedThemes.includes(savedTheme)) ? savedTheme : 'minimalist';
+      const initialTheme = (savedTheme && allowedThemes.includes(savedTheme)) ? savedTheme : 'clean-light';
       theme.value = initialTheme;
       document.documentElement.setAttribute('data-theme', initialTheme);
     } finally {

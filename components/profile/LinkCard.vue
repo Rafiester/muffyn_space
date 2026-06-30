@@ -14,11 +14,11 @@ interface LinkItem {
 
 const props = defineProps<{
   link: LinkItem;
-  theme: 'minimalist' | 'minimalist-dark' | 'retro' | 'electric';
+  theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized' | 'electric';
 }>();
 
 const isRetro = computed(() => props.theme === 'retro');
-const isDark = computed(() => props.theme === 'minimalist-dark' || props.theme === 'electric');
+const isDark = computed(() => ['pitch-dark', 'solarized', 'fluent', 'electric'].includes(props.theme));
 
 const customGlowStyle = computed(() => {
   if (!isRetro.value && props.link.accentColor) {

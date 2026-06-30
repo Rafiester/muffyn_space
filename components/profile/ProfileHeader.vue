@@ -12,11 +12,11 @@ interface Profile {
 
 const props = defineProps<{
   profile: Profile;
-  theme: 'minimalist' | 'minimalist-dark' | 'retro' | 'electric';
+  theme: 'clean-light' | 'pitch-dark' | 'retro' | 'fluent' | 'saas' | 'solarized' | 'electric';
 }>();
 
 const isRetro = computed(() => props.theme === 'retro');
-const isDark = computed(() => props.theme === 'minimalist-dark' || props.theme === 'electric');
+const isDark = computed(() => ['pitch-dark', 'solarized', 'fluent', 'electric'].includes(props.theme));
 </script>
 
 <template>
