@@ -18,6 +18,8 @@ interface LinksManagerProps {
   onLinkChange: <K extends keyof LinkItem>(index: number, key: K, value: LinkItem[K]) => void;
   onDeleteLink: (index: number) => void;
   onReorderAll?: (reorderedLinks: LinkItem[]) => void;
+  onSaveAll?: () => Promise<void>;
+  saving?: boolean;
 }
 
 export default function LinksManager({
@@ -25,28 +27,34 @@ export default function LinksManager({
   onAddLink,
   onLinkChange,
   onDeleteLink,
-  onReorderAll
+  onReorderAll,
+  onSaveAll,
+  saving = false
 }: LinksManagerProps) {
-  // Drag and drop sorting states
   const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
   const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
+  const [isDragActive, setIsDragActive] = useState<boolean>(false);
+  const [hasReordered, setHasReordered] = useState<boolean>(false);
 
   const handleDragStart = (e: React.DragEvent, index: number) => {
+    if (!isDragActive) {
+      e.preventDefault();
+      return;
+    }
     setDraggedIdx(index);
-    // Standard dataTransfer setup for HTML5 drag
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/plain', index.toString());
   };
 
   const handleDragOver = (e: React.DragEvent, index: number) => {
     e.preventDefault();
-    if (draggedIdx === null || draggedIdx === index) return;
+    if (!isDragActive || draggedIdx === null || draggedIdx === index) return;
     setDragOverIdx(index);
   };
 
   const handleDrop = (e: React.DragEvent, targetIndex: number) => {
     e.preventDefault();
-    if (draggedIdx === null || draggedIdx === targetIndex) {
+    if (!isDragActive || draggedIdx === null || draggedIdx === targetIndex) {
       cleanupDrag();
       return;
     }
@@ -57,6 +65,7 @@ export default function LinksManager({
 
     if (onReorderAll) {
       onReorderAll(reordered);
+      setHasReordered(true);
     }
     cleanupDrag();
   };
@@ -64,6 +73,13 @@ export default function LinksManager({
   const cleanupDrag = () => {
     setDraggedIdx(null);
     setDragOverIdx(null);
+  };
+
+  const handleSaveClick = async () => {
+    if (onSaveAll) {
+      await onSaveAll();
+      setHasReordered(false);
+    }
   };
 
   return (
@@ -96,7 +112,7 @@ export default function LinksManager({
             return (
               <div
                 key={link.id}
-                draggable
+                draggable={isDragActive}
                 onDragStart={(e) => handleDragStart(e, idx)}
                 onDragOver={(e) => handleDragOver(e, idx)}
                 onDrop={(e) => handleDrop(e, idx)}
@@ -112,6 +128,11 @@ export default function LinksManager({
                   idx={idx}
                   onLinkChange={onLinkChange}
                   onDeleteLink={onDeleteLink}
+                  isDragActive={isDragActive}
+                  onDragActiveToggle={() => setIsDragActive(!isDragActive)}
+                  hasReordered={hasReordered}
+                  onSave={handleSaveClick}
+                  saving={saving}
                 />
               </div>
             );

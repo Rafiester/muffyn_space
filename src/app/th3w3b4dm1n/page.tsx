@@ -445,6 +445,8 @@ export default function AdminDashboard() {
                 onLinkChange={handleLinkChange}
                 onDeleteLink={deleteLink}
                 onReorderAll={setLinks}
+                onSaveAll={saveAllChanges}
+                saving={saving}
               />
             </div>
           )}

@@ -16,13 +16,23 @@ interface LinkEditorItemProps {
   idx: number;
   onLinkChange: <K extends keyof LinkItem>(index: number, key: K, value: LinkItem[K]) => void;
   onDeleteLink: (index: number) => void;
+  isDragActive?: boolean;
+  onDragActiveToggle?: () => void;
+  hasReordered?: boolean;
+  onSave?: () => void;
+  saving?: boolean;
 }
 
 export default function LinkEditorItem({
   link,
   idx,
   onLinkChange,
-  onDeleteLink
+  onDeleteLink,
+  isDragActive = false,
+  onDragActiveToggle,
+  hasReordered = false,
+  onSave,
+  saving = false
 }: LinkEditorItemProps) {
   return (
     <div className="p-4 bg-white/[0.01] border border-white/[0.03] hover:border-white/[0.06] rounded-xl transition-all space-y-4">
@@ -40,16 +50,34 @@ export default function LinkEditorItem({
         </div>
         
         {/* Sorting, Active state, and Delete buttons */}
-        <div className="flex items-center gap-1.5">
-          {/* Reorder drag handle indicator */}
-          <div 
-            className="flex items-center gap-1 px-2 py-1 bg-white/[0.03] border border-white/[0.06] rounded-lg text-white/30 cursor-grab active:cursor-grabbing hover:text-white/60 transition-colors"
-            title="Drag card to reorder"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-            </svg>
-            <span className="text-[9px] font-bold uppercase tracking-wider select-none">Reorder</span>
+        <div className="flex items-center gap-2">
+          {/* Reorder drag toggle/handle button */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={onDragActiveToggle}
+              className={`flex items-center gap-1 px-2.5 py-1.5 border rounded-lg text-xs font-bold transition-all ${
+                isDragActive
+                  ? 'bg-[#af413c] border-[#af413c] text-white cursor-grabbing shadow-md shadow-[#af413c]/15'
+                  : 'bg-white/[0.03] border-white/[0.06] text-white/30 hover:text-white/60 hover:bg-white/[0.06]'
+              }`}
+              title={isDragActive ? "Drag this card now!" : "Enable Drag & Drop"}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+              </svg>
+              <span>Reorder</span>
+            </button>
+
+            {/* Save Order option button rendered right next to it if drag & drop reorder has finished */}
+            {hasReordered && isDragActive && (
+              <button
+                onClick={onSave}
+                disabled={saving}
+                className="px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white border border-emerald-500/20 text-xs font-bold rounded-lg transition-all flex items-center gap-1 shadow-md shadow-emerald-600/10"
+              >
+                {saving ? 'Saving...' : 'Save Order'}
+              </button>
+            )}
           </div>
           
           {/* Active toggle */}
@@ -80,7 +108,7 @@ export default function LinkEditorItem({
       {/* Inputs panel */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-[10px] font-bold uppercase tracking-wide text-white/20 mb-1">Description</label>
+          <label className="block text-xs font-bold uppercase tracking-wide text-white/20 mb-1">Description</label>
           <input
             type="text"
             value={link.description}
