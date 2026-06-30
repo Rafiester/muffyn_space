@@ -108,19 +108,59 @@ export default function LinkEditorItem({
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wide text-white/20 mb-1">Icon Category</label>
-          <select
-            value={link.icon}
-            onChange={(e) => onLinkChange(idx, 'icon', e.target.value)}
-            className="w-full px-3 py-2 bg-white/[0.02] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/80 text-sm transition-all"
-            disabled={isDragActive}
-          >
-            <option value="globe">Globe (Website)</option>
-            <option value="youtube">YouTube</option>
-            <option value="figma">Figma</option>
-            <option value="github">GitHub</option>
-            <option value="newsletter">Newsletter/Email</option>
-          </select>
+          <label className="block text-xs font-bold uppercase tracking-wide text-white/20 mb-1">Link Icon</label>
+          <div className="flex items-center gap-2">
+            <select
+              value={link.icon.startsWith('data:image/') || link.icon.startsWith('http') ? 'custom' : link.icon}
+              onChange={(e) => {
+                if (e.target.value !== 'custom') {
+                  onLinkChange(idx, 'icon', e.target.value);
+                }
+              }}
+              className="flex-1 px-3 py-2 bg-[#1e1d23] border border-white/[0.06] focus:border-[#af413c]/50 rounded-xl outline-none text-white/85 text-sm transition-all"
+              disabled={isDragActive}
+            >
+              <option value="globe">Globe (Website)</option>
+              <option value="youtube">YouTube</option>
+              <option value="figma">Figma</option>
+              <option value="github">GitHub</option>
+              <option value="newsletter">Newsletter/Email</option>
+              <option value="custom">Custom Image File</option>
+            </select>
+            
+            {/* File upload trigger */}
+            <label className={`px-3 py-2 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] text-white/70 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center shrink-0 ${isDragActive ? 'opacity-50 pointer-events-none' : ''}`}>
+              <span>Upload</span>
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                disabled={isDragActive}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  
+                  // Check size limit: 100KB
+                  if (file.size > 102400) {
+                    alert("File is too large! Maximum allowed size is 100KB.");
+                    return;
+                  }
+                  
+                  const reader = new FileReader();
+                  reader.onload = () => {
+                    if (typeof reader.result === 'string') {
+                      onLinkChange(idx, 'icon', reader.result);
+                    }
+                  };
+                  reader.readAsDataURL(file);
+                }}
+              />
+            </label>
+          </div>
+          {/* File description text */}
+          <span className="text-[10px] text-white/20 mt-1 block">
+            Max size: 100KB. Square ratio (PNG/JPG/SVG) recommended.
+          </span>
         </div>
 
         <div className="grid grid-cols-3 gap-2">

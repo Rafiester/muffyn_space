@@ -18,6 +18,11 @@ interface LinkCardProps {
 }
 
 function getIcon(iconName: string) {
+  if (iconName.startsWith('data:image/') || iconName.startsWith('http://') || iconName.startsWith('https://')) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={iconName} alt="" className="w-5 h-5 object-contain rounded" />;
+  }
+
   const props = { className: "w-5 h-5", strokeWidth: 2, fill: "none", stroke: "currentColor" };
   switch (iconName.toLowerCase()) {
     case 'globe':
