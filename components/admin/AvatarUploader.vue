@@ -21,8 +21,8 @@ const zoom = ref<number>(1.0);
 const offsetX = ref<number>(0); // Percentage offset from center (-100 to 100)
 const offsetY = ref<number>(0); // Percentage offset from center (-100 to 100)
 
-const canvasWidth = 280;
-const canvasHeight = 280;
+const canvasWidth = 240;
+const canvasHeight = 240;
 
 // Watch adjustments to redraw
 watch([zoom, offsetX, offsetY], () => {
@@ -151,10 +151,10 @@ loadImage();
 
 <template>
   <div class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="bg-[#151419] border border-white/[0.08] rounded-3xl w-full max-w-md p-6 shadow-2xl flex flex-col text-white max-h-[95vh] overflow-y-auto">
+    <div class="bg-[#151419] border border-white/[0.08] rounded-3xl w-full max-w-md p-5 shadow-2xl flex flex-col text-white max-h-[80dvh] overflow-y-auto">
       
       <!-- Header -->
-      <div class="flex justify-between items-center mb-5 pb-3 border-b border-white/[0.06]">
+      <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/[0.06]">
         <h3 class="text-sm font-bold uppercase tracking-wider text-white/80">Crop & Resize Avatar</h3>
         <button 
           @click="emit('close')" 
@@ -169,7 +169,7 @@ loadImage();
 
       <!-- Preview Canvas -->
       <div class="flex flex-col items-center">
-        <div class="border border-white/[0.06] p-1 rounded-3xl bg-black/40 mb-5 relative flex items-center justify-center">
+        <div class="border border-white/[0.06] p-1 rounded-3xl bg-black/40 mb-4 relative flex items-center justify-center">
           <canvas 
             ref="previewCanvas" 
             :width="canvasWidth" 
@@ -179,7 +179,7 @@ loadImage();
         </div>
 
         <!-- Adjustment Controls -->
-        <div class="w-full space-y-4 px-2 mb-6 text-xs text-white/50">
+        <div class="w-full space-y-3 px-2 mb-4 text-xs text-white/50">
           <div class="space-y-1">
             <div class="flex justify-between font-bold uppercase tracking-wider">
               <span>Zoom</span>
