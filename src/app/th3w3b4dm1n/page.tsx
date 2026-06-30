@@ -469,7 +469,7 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          {(activeTab === 'home' || activeTab === 'services' || activeTab === 'portfolio' || activeTab === 'experience') && (
+          {activeTab === 'home' && (
             <div className="animate-fadeIn">
               <LinksManager
                 links={links}
