@@ -72,8 +72,36 @@ const onFileInput = (e: Event) => {
         />
       </div>
       
-      <!-- Active state and Delete buttons -->
-      <div class="flex items-center gap-1.5">
+      <!-- Active state, Featured toggle, and Delete buttons -->
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <!-- Featured toggle switch -->
+        <button
+          type="button"
+          @click="emit('linkChange', idx, 'featured', !link.featured)"
+          :class="[
+            'px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-md border transition-all flex items-center gap-1.5',
+            link.featured
+              ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+              : 'bg-white/[0.04] border-white/[0.06] text-white/30 hover:text-white/40'
+          ]"
+          :disabled="isDragActive"
+        >
+          <div 
+            :class="[
+              'w-6 h-3.5 rounded-full p-0.5 transition-colors duration-200 ease-in-out shrink-0 flex items-center',
+              link.featured ? 'bg-amber-500' : 'bg-white/10'
+            ]"
+          >
+            <div 
+              :class="[
+                'w-2.5 h-2.5 rounded-full bg-white transition-transform duration-200 ease-in-out transform',
+                link.featured ? 'translate-x-2.5' : 'translate-x-0'
+              ]"
+            />
+          </div>
+          <span>Featured</span>
+        </button>
+
         <!-- Active toggle -->
         <button
           @click="emit('linkChange', idx, 'is_active', !(link.is_active ?? true))"
@@ -138,7 +166,7 @@ const onFileInput = (e: Event) => {
         />
       </div>
 
-      <div>
+      <div class="md:col-span-2">
         <label class="block text-xs font-bold uppercase tracking-wide text-white/20 mb-1">Link Icon</label>
         <div class="flex items-center gap-3">
           <!-- Inline Preview box -->
@@ -182,17 +210,6 @@ const onFileInput = (e: Event) => {
         <span class="text-[10px] text-white/20 mt-1.5 block">
           Max size: 100KB. Recommended dimensions: 64x64 pixels (PNG/JPG/SVG).
         </span>
-      </div>
-
-      <div class="flex items-center gap-3 pt-2">
-        <input
-          type="checkbox"
-          :checked="link.featured"
-          @change="(e) => emit('linkChange', idx, 'featured', (e.target as HTMLInputElement).checked)"
-          class="w-4 h-4 rounded bg-white/[0.02] border-white/[0.06] accent-[#af413c] cursor-pointer"
-          :disabled="isDragActive"
-        />
-        <label class="text-xs font-bold uppercase tracking-wide text-white/40">Featured Link</label>
       </div>
     </div>
   </div>
