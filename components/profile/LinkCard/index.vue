@@ -152,13 +152,18 @@ const isCustomIcon = computed(() => {
             <span 
               v-if="link.featured"
               :class="[
-                'text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full select-none',
+                'text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full select-none border',
                 isRetro 
-                  ? 'bg-black text-white rounded-none border border-black font-black' 
+                  ? 'bg-black text-white rounded-none border-black font-black' 
                   : theme === 'electric'
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                    : 'bg-indigo-500/10 text-indigo-500 border border-indigo-500/20'
+                    ? ''
+                    : 'bg-indigo-500/10 text-indigo-500 border-indigo-500/20'
               ]"
+              :style="theme === 'electric' ? {
+                backgroundColor: `${activeAccentColor || '#10b981'}1a`,
+                color: activeAccentColor || '#10b981',
+                borderColor: `${activeAccentColor || '#10b981'}33`
+              } : {}"
             >
               Featured
             </span>
