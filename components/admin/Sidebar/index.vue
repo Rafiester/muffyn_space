@@ -5,11 +5,13 @@ export type TabType = 'dashboard' | 'home' | 'about' | 'settings';
 
 defineProps<{
   activeTab: TabType;
+  mobileOpen?: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: 'tabSelect', tab: TabType): void;
   (e: 'logout'): void;
+  (e: 'close'): void;
 }>();
 
 const dropdownOpen = ref(false);
@@ -32,7 +34,10 @@ onUnmounted(() => {
 
 <template>
   <aside 
-    class="fixed top-0 left-0 h-full w-[260px] z-50 bg-[#1e1d23] border-r border-white/[0.04] flex flex-col justify-between"
+    :class="[
+      'fixed top-0 left-0 h-full w-[260px] z-50 bg-[#1e1d23] border-r border-white/[0.04] flex flex-col justify-between transition-transform duration-300 ease-in-out',
+      mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+    ]"
   >
     <!-- Top Section -->
     <div class="flex flex-col">
@@ -52,6 +57,16 @@ onUnmounted(() => {
             <div class="text-[11px] text-white/30 font-medium tracking-wider uppercase mt-0.5">CMS Panel</div>
           </div>
         </div>
+        <!-- Close Button (Mobile Only) -->
+        <button 
+          @click="emit('close')"
+          class="lg:hidden p-1.5 text-white/40 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all"
+          aria-label="Close menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       <!-- Divider -->

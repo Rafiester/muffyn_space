@@ -56,6 +56,7 @@ const mounted = ref(false);
 const loading = ref(true);
 const saving = ref(false);
 const toast = ref<{ message: string; type: 'success' | 'error' } | null>(null);
+const mobileSidebarOpen = ref(false);
 
 useHead({
   title: 'CMS Space',
@@ -553,14 +554,44 @@ onBeforeUnmount(() => {
       </div>
     </Teleport>
 
-    <Sidebar
-      :activeTab="activeTab"
-      @tabSelect="(tab) => activeTab = tab"
-      @logout="handleLogout"
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div 
+      v-if="mobileSidebarOpen" 
+      @click="mobileSidebarOpen = false" 
+      class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity duration-300"
     />
 
-    <!-- Main Workspace Frame — permanently offset by sidebar width (260px) -->
-    <div class="flex-1 flex flex-col min-h-screen pl-[260px]">
+    <Sidebar
+      :activeTab="activeTab"
+      :mobileOpen="mobileSidebarOpen"
+      @tabSelect="(tab) => { activeTab = tab; mobileSidebarOpen = false; }"
+      @logout="handleLogout"
+      @close="mobileSidebarOpen = false"
+    />
+
+    <!-- Main Workspace Frame — responsive layout frame -->
+    <div class="flex-1 flex flex-col min-h-screen lg:pl-[260px] pl-0">
+      <!-- Mobile Header Bar -->
+      <header class="lg:hidden h-[60px] bg-[#1e1d23] border-b border-white/[0.04] px-4 flex items-center justify-between sticky top-0 z-30">
+        <button 
+          @click="mobileSidebarOpen = true"
+          class="p-2 -ml-2 text-white/70 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all"
+          aria-label="Open menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+        <span class="text-xs font-bold text-white/90 tracking-widest uppercase">
+          <span v-if="activeTab === 'dashboard'">Dashboard</span>
+          <span v-else-if="activeTab === 'about'">About me</span>
+          <span v-else-if="activeTab === 'home'">Items</span>
+          <span v-else-if="activeTab === 'settings'">Settings</span>
+        </span>
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#c94a44] to-[#8b2e2a] flex items-center justify-center font-bold text-white text-xs select-none">
+          A
+        </div>
+      </header>
 
 
       <!-- Content Container -->
