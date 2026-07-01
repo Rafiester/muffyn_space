@@ -114,6 +114,9 @@
 body {
   background-color: var(--bg-app);
   background-image: var(--bg-app-image, none);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--text-body);
   font-family: var(--font-family-body);
   min-height: 100vh;
