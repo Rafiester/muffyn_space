@@ -119,14 +119,13 @@ const showToast = (message: string, type: 'success' | 'error') => {
 };
 
 const getCookie = (name: string): string | null => {
-  const matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : null;
+  const cookie = useCookie(name);
+  return cookie.value || null;
 };
 
 const deleteCookie = (name: string) => {
-  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax; Secure`;
+  const cookie = useCookie(name);
+  cookie.value = null;
 };
 
 const isTokenExpired = (token: string | null): boolean => {
@@ -152,7 +151,7 @@ let expiryCheckInterval: any = null;
 // Authentication & Initial Load
 onMounted(async () => {
   const accessToken = getCookie('admin-access-token');
-  const isAuthed = localStorage.getItem('admin-session') === 'true' && !isTokenExpired(accessToken);
+  const isAuthed = !!accessToken && !isTokenExpired(accessToken);
   if (!isAuthed) {
     handleLogout();
     return;

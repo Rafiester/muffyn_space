@@ -23,23 +23,17 @@ useHead({
 });
 
 const setCookie = (name: string, value: string, maxAgeSeconds: number) => {
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax; Secure`;
+  const cookie = useCookie(name, { maxAge: maxAgeSeconds, path: '/', sameSite: 'lax', secure: true });
+  cookie.value = value;
 };
 
 const getCookie = (name: string): string | null => {
-  const matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : null;
+  const cookie = useCookie(name);
+  return cookie.value || null;
 };
 
 onMounted(() => {
-  const isAuthed = localStorage.getItem('admin-session') === 'true' || !!getCookie('admin-access-token');
-  if (isAuthed) {
-    router.push('/th3w3b4dm1n');
-  } else {
-    mounted.value = true;
-  }
+  mounted.value = true;
 });
 
 function generateRealJWT(payloadData: object, secret: string = 'antigravity-secret'): string {
