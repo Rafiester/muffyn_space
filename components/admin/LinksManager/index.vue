@@ -77,16 +77,16 @@ const handleSaveClick = async () => {
 
 <template>
   <div class="bg-[#1e1d23]/80 border border-white/[0.04] p-6 rounded-2xl backdrop-blur-sm">
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
       <h2 class="text-xs font-bold uppercase tracking-[0.12em] !text-white/30 flex items-center gap-2">
         Manage Links ({{ links.length }})
       </h2>
-      <div class="flex items-center gap-2 shrink-0">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
         <!-- Unified single Reorder toggle button on the left of + Add link -->
         <button
           @click="isDragActive = !isDragActive"
           :class="[
-            'px-3 py-1.5 border rounded-xl text-xs font-bold transition-all flex items-center gap-1.5',
+            'px-3 py-1.5 border rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 w-full sm:w-auto',
             isDragActive
               ? 'bg-[#af413c] border-[#af413c] text-white shadow-md shadow-[#af413c]/15'
               : 'bg-[#af413c]/10 hover:bg-[#af413c]/20 text-[#e8736e] border border-[#af413c]/20 hover:border-[#af413c]/30'
@@ -104,14 +104,14 @@ const handleSaveClick = async () => {
           v-if="hasReordered && isDragActive"
           @click="handleSaveClick"
           :disabled="saving"
-          class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white border border-emerald-500/20 text-xs font-bold rounded-xl transition-all flex items-center gap-1 shadow-md shadow-emerald-600/10"
+          class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white border border-emerald-500/20 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1 w-full sm:w-auto shadow-md shadow-emerald-600/10"
         >
           {{ saving ? 'Saving...' : 'Save Order' }}
         </button>
 
         <button
           @click="emit('addLink')"
-          class="px-3 py-1.5 bg-[#af413c]/10 hover:bg-[#af413c]/20 text-[#e8736e] border border-[#af413c]/20 hover:border-[#af413c]/30 rounded-xl text-xs font-bold transition-all flex items-center gap-1"
+          class="px-3 py-1.5 bg-[#af413c]/10 hover:bg-[#af413c]/20 text-[#e8736e] border border-[#af413c]/20 hover:border-[#af413c]/30 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 w-full sm:w-auto"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
