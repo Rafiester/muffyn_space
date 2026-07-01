@@ -21,7 +21,12 @@ const getEnvVar = (name: string): string => {
 const supabaseUrl = getEnvVar('SUPABASE_URL');
 const supabaseAnonKey = getEnvVar('SUPABASE_ANON_KEY');
 
-export const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
+export const hasSupabaseConfig = Boolean(
+  supabaseUrl &&
+  supabaseAnonKey &&
+  supabaseUrl !== 'YOUR_SUPABASE_URL' &&
+  supabaseAnonKey !== 'YOUR_SUPABASE_ANON_KEY'
+);
 
 export const supabase: SupabaseClient | null = hasSupabaseConfig
   ? createClient(supabaseUrl, supabaseAnonKey)

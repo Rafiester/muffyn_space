@@ -263,17 +263,41 @@ onMounted(async () => {
         }
       }
     } catch (err: any) {
-      const errMsg = err instanceof Error ? err.message : String(err);
+      const errMsg = err?.message || (typeof err === 'object' ? JSON.stringify(err) : String(err));
       showToast(`Failed loading Supabase data: ${errMsg}`, 'error');
-      profile.value = {
-        ...profileData.profile,
-        active_theme: 'clean-light',
-        meta_title: '',
-        meta_description: '',
-        electricAccentColor: profileData.settings?.electricAccentColor || undefined,
-        socials: migrateSocials(profileData.profile.socials)
-      } as Profile;
-      links.value = profileData.links.map(l => ({ ...l, is_active: true }));
+      
+      const localProfile = localStorage.getItem('cms-profile');
+      const localLinks = localStorage.getItem('cms-links');
+
+      if (localProfile) {
+        const parsed = JSON.parse(localProfile);
+        profile.value = {
+          name: parsed.name || '',
+          title: parsed.title || '',
+          bio: parsed.bio || '',
+          avatar: parsed.avatar || '',
+          active_theme: parsed.active_theme || parsed.activeTheme || 'clean-light',
+          meta_title: parsed.meta_title || '',
+          meta_description: parsed.meta_description || '',
+          electricAccentColor: parsed.electricAccentColor || undefined,
+          socials: migrateSocials(parsed.socials)
+        };
+      } else {
+        profile.value = {
+          ...profileData.profile,
+          active_theme: 'clean-light',
+          meta_title: '',
+          meta_description: '',
+          electricAccentColor: profileData.settings?.electricAccentColor || undefined,
+          socials: migrateSocials(profileData.profile.socials)
+        } as Profile;
+      }
+
+      if (localLinks) {
+        links.value = JSON.parse(localLinks);
+      } else {
+        links.value = profileData.links.map(l => ({ ...l, is_active: true }));
+      }
     } finally {
       loading.value = false;
       mounted.value = true;
