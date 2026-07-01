@@ -78,7 +78,7 @@ const confirmRemoveAvatar = () => {
     <div class="space-y-5">
       <div>
         <label class="block text-xs font-bold uppercase tracking-wider text-white/25 mb-2">Avatar Profile Image</label>
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <!-- Avatar Preview -->
           <div class="w-20 h-20 rounded-full overflow-hidden bg-white/[0.03] border border-white/[0.06] flex items-center justify-center shrink-0">
             <img v-if="profile.avatar" :src="profile.avatar" alt="Avatar Preview" class="w-full h-full object-cover" />
@@ -88,9 +88,9 @@ const confirmRemoveAvatar = () => {
           </div>
 
           <!-- Upload actions and description -->
-          <div class="flex-1 space-y-2">
-            <div class="flex items-center gap-2">
-              <label class="px-4 py-2.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 text-white/80 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center shrink-0 h-10">
+          <div class="flex-1 w-full space-y-2 text-center sm:text-left">
+            <div class="flex flex-col sm:flex-row items-center gap-2 w-full">
+              <label class="px-4 py-2.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 text-white/80 hover:text-white rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center sm:shrink-0 w-full sm:w-auto h-10">
                 <span>Upload Profile Avatar</span>
                 <input
                   type="file"
@@ -104,7 +104,7 @@ const confirmRemoveAvatar = () => {
                 v-if="profile.avatar"
                 type="button"
                 @click="showRemoveConfirm = true"
-                class="px-4 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 hover:border-rose-500/30 text-rose-400 rounded-xl text-xs font-bold transition-all h-10"
+                class="px-4 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 hover:border-rose-500/30 text-rose-400 rounded-xl text-xs font-bold transition-all h-10 w-full sm:w-auto flex items-center justify-center"
               >
                 Remove Image
               </button>
@@ -113,7 +113,7 @@ const confirmRemoveAvatar = () => {
                 v-if="profile.avatar"
                 type="button"
                 @click="showPreview = true"
-                class="px-4 py-2.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 text-white/60 hover:text-white rounded-xl text-xs font-bold transition-all h-10 flex items-center gap-1.5"
+                class="px-4 py-2.5 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/10 text-white/60 hover:text-white rounded-xl text-xs font-bold transition-all h-10 flex items-center justify-center gap-1.5 w-full sm:w-auto"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
                 View
