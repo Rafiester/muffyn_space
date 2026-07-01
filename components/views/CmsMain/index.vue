@@ -378,8 +378,12 @@ const executeDeleteLink = () => {
 // Save changes to database or local state
 const saveAllChanges = async () => {
   saving.value = true;
-  if (!hasSupabaseConfig || !supabase) {
-    console.log("Supabase credentials not configured. Saving to localStorage.");
+  
+  const accessToken = getCookie('admin-access-token');
+  const isLocalBypass = accessToken && accessToken.includes('local-admin-uid-12345');
+
+  if (!hasSupabaseConfig || !supabase || isLocalBypass || !profileId.value) {
+    console.log("Supabase not active or local bypass session. Saving to localStorage.");
     localStorage.setItem('cms-profile', JSON.stringify(profile.value));
     localStorage.setItem('cms-links', JSON.stringify(links.value));
     showToast('Offline Changes Saved Successfully!', 'success');
