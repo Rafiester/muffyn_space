@@ -138,7 +138,12 @@ const safeBase64UrlDecode = (str: string): any => {
   while (base64.length % 4) {
     base64 += '=';
   }
-  return JSON.parse(atob(base64));
+  if (typeof atob === 'function') {
+    return JSON.parse(atob(base64));
+  } else if (typeof Buffer !== 'undefined') {
+    return JSON.parse(Buffer.from(base64, 'base64').toString('utf-8'));
+  }
+  throw new Error("Base64 decoding not supported in this environment");
 };
 
 const isTokenExpired = (token: string | null): boolean => {
@@ -325,7 +330,28 @@ onMounted(async () => {
       }
     } catch (err: any) {
       console.error("Supabase load error detail:", err);
-      const errMsg = err?.message || (typeof err === 'object' ? JSON.stringify(err) : String(err));
+      let errMsg = 'Unknown error';
+      if (err) {
+        if (typeof err === 'string') {
+          errMsg = err;
+        } else if (err.message) {
+          errMsg = err.message;
+          if (err.details) errMsg += ` (${err.details})`;
+        } else if (err.error_description) {
+          errMsg = err.error_description;
+        } else {
+          try {
+            const keys = Object.keys(err);
+            if (keys.length > 0) {
+              errMsg = keys.map(k => `${k}: ${typeof err[k] === 'object' ? JSON.stringify(err[k]) : err[k]}`).join(', ');
+            } else {
+              errMsg = String(err);
+            }
+          } catch (e) {
+            errMsg = String(err);
+          }
+        }
+      }
       showToast(`Failed loading Supabase data: ${errMsg}`, 'error');
       
       const localProfile = localStorage.getItem('cms-profile');
@@ -576,7 +602,29 @@ const saveAllChanges = async () => {
       }));
     }
   } catch (err: any) {
-    const errMsg = err instanceof Error ? err.message : String(err);
+    console.error("Supabase save error detail:", err);
+    let errMsg = 'Unknown error';
+    if (err) {
+      if (typeof err === 'string') {
+        errMsg = err;
+      } else if (err.message) {
+        errMsg = err.message;
+        if (err.details) errMsg += ` (${err.details})`;
+      } else if (err.error_description) {
+        errMsg = err.error_description;
+      } else {
+        try {
+          const keys = Object.keys(err);
+          if (keys.length > 0) {
+            errMsg = keys.map(k => `${k}: ${typeof err[k] === 'object' ? JSON.stringify(err[k]) : err[k]}`).join(', ');
+          } else {
+            errMsg = String(err);
+          }
+        } catch (e) {
+          errMsg = String(err);
+        }
+      }
+    }
     showToast(`Failed to publish changes: ${errMsg}`, 'error');
   } finally {
     saving.value = false;

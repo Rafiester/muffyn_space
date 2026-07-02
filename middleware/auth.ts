@@ -5,7 +5,12 @@ const safeBase64UrlDecode = (str: string): any => {
   while (base64.length % 4) {
     base64 += '=';
   }
-  return JSON.parse(atob(base64));
+  if (typeof atob === 'function') {
+    return JSON.parse(atob(base64));
+  } else if (typeof Buffer !== 'undefined') {
+    return JSON.parse(Buffer.from(base64, 'base64').toString('utf-8'));
+  }
+  throw new Error("Base64 decoding not supported in this environment");
 };
 
 const isTokenExpired = (token: string | null): boolean => {
