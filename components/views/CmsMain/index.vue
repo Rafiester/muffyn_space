@@ -224,12 +224,47 @@ onMounted(async () => {
     }
 
     try {
-      const { data: dbProfile, error: profileErr } = await supabase
+      let dbProfile: any = null;
+      const { data, error: profileErr } = await supabase
         .from('profiles')
         .select('*')
-        .single();
+        .maybeSingle();
 
-      if (profileErr) throw profileErr;
+      if (profileErr) {
+        throw profileErr;
+      }
+
+      if (!data) {
+        // Query returned no rows. Auto-create a profile row for the authenticated user.
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          console.log("No profile row found on load. Creating default profile row for:", user.id);
+          const { error: insertErr } = await supabase
+            .from('profiles')
+            .insert({
+              id: user.id,
+              display_name: 'New User',
+              title: 'Creative Technologist',
+              bio: '',
+              avatar_url: ''
+            });
+          if (insertErr) throw insertErr;
+
+          // Re-fetch the newly created profile
+          const { data: reFetchedProfile, error: fetchErr } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single();
+
+          if (fetchErr) throw fetchErr;
+          dbProfile = reFetchedProfile;
+        } else {
+          throw new Error("No active user session found to create profile.");
+        }
+      } else {
+        dbProfile = data;
+      }
 
       if (dbProfile) {
         profileId.value = dbProfile.id;
