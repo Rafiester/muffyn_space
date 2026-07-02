@@ -120,13 +120,25 @@ const showToast = (message: string, type: 'success' | 'error') => {
 };
 
 const getCookie = (name: string): string | null => {
-  const cookie = useCookie(name);
-  return cookie.value || null;
+  if (typeof window === 'undefined') return null;
+  const matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : null;
 };
 
 const deleteCookie = (name: string) => {
-  const cookie = useCookie(name);
-  cookie.value = null;
+  if (typeof window !== 'undefined') {
+    document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax; Secure`;
+  }
+};
+
+const safeBase64UrlDecode = (str: string): any => {
+  let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+  while (base64.length % 4) {
+    base64 += '=';
+  }
+  return JSON.parse(atob(base64));
 };
 
 const isTokenExpired = (token: string | null): boolean => {
@@ -134,9 +146,7 @@ const isTokenExpired = (token: string | null): boolean => {
   try {
     const parts = token.split('.');
     if (parts.length !== 3) return true;
-    const payloadUrl = parts[1];
-    const base64 = payloadUrl.replace(/-/g, '+').replace(/_/g, '/');
-    const decoded = JSON.parse(atob(base64));
+    const decoded = safeBase64UrlDecode(parts[1]);
     if (decoded.exp) {
       const now = Math.floor(Date.now() / 1000);
       return decoded.exp < now;
@@ -152,9 +162,7 @@ const checkLocalBypass = (token: string | null): boolean => {
   try {
     const parts = token.split('.');
     if (parts.length !== 3) return false;
-    const payloadUrl = parts[1];
-    const base64 = payloadUrl.replace(/-/g, '+').replace(/_/g, '/');
-    const decoded = JSON.parse(atob(base64));
+    const decoded = safeBase64UrlDecode(parts[1]);
     return decoded.sub === 'local-admin-uid-12345';
   } catch (e) {
     return false;
@@ -316,6 +324,7 @@ onMounted(async () => {
         }
       }
     } catch (err: any) {
+      console.error("Supabase load error detail:", err);
       const errMsg = err?.message || (typeof err === 'object' ? JSON.stringify(err) : String(err));
       showToast(`Failed loading Supabase data: ${errMsg}`, 'error');
       
