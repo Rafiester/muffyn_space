@@ -1,13 +1,19 @@
 import { defineNuxtRouteMiddleware, navigateTo, useCookie } from '#app';
 
+const safeBase64UrlDecode = (str: string): any => {
+  let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+  while (base64.length % 4) {
+    base64 += '=';
+  }
+  return JSON.parse(atob(base64));
+};
+
 const isTokenExpired = (token: string | null): boolean => {
   if (!token) return true;
   try {
     const parts = token.split('.');
     if (parts.length !== 3) return true;
-    const payloadUrl = parts[1];
-    const base64 = payloadUrl.replace(/-/g, '+').replace(/_/g, '/');
-    const decoded = JSON.parse(atob(base64));
+    const decoded = safeBase64UrlDecode(parts[1]);
     if (decoded.exp) {
       const now = Math.floor(Date.now() / 1000);
       return decoded.exp < now;

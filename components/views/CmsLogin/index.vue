@@ -23,13 +23,17 @@ useHead({
 });
 
 const setCookie = (name: string, value: string, maxAgeSeconds: number) => {
-  const cookie = useCookie(name, { maxAge: maxAgeSeconds, path: '/', sameSite: 'lax', secure: true });
-  cookie.value = value;
+  if (typeof window !== 'undefined') {
+    document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax; Secure`;
+  }
 };
 
 const getCookie = (name: string): string | null => {
-  const cookie = useCookie(name);
-  return cookie.value || null;
+  if (typeof window === 'undefined') return null;
+  const matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : null;
 };
 
 onMounted(() => {
