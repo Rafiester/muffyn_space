@@ -385,6 +385,39 @@ const saveAllChanges = async () => {
   const accessToken = getCookie('admin-access-token');
   const isLocalBypass = accessToken && accessToken.includes('local-admin-uid-12345');
 
+  // If Supabase is active but no profile ID is loaded, attempt to resolve or create it dynamically using the authenticated user session
+  if (hasSupabaseConfig && supabase && !isLocalBypass && !profileId.value) {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        profileId.value = user.id;
+        
+        // Ensure profile row exists in the database
+        const { data: existingProfile, error: checkErr } = await supabase
+          .from('profiles')
+          .select('id')
+          .eq('id', user.id)
+          .maybeSingle();
+          
+        if (!checkErr && !existingProfile) {
+          console.log("No profile row found in DB for user. Creating default profile row.");
+          const { error: insertErr } = await supabase
+            .from('profiles')
+            .insert({
+              id: user.id,
+              display_name: profile.value.name || 'New User',
+              title: profile.value.title || 'Creative Technologist',
+              bio: profile.value.bio || '',
+              avatar_url: profile.value.avatar || ''
+            });
+          if (insertErr) throw insertErr;
+        }
+      }
+    } catch (e: any) {
+      console.error("Failed to dynamically load or create profile ID:", e.message);
+    }
+  }
+
   if (!hasSupabaseConfig || !supabase || isLocalBypass || !profileId.value) {
     console.log("Supabase not active or local bypass session. Saving to localStorage.");
     localStorage.setItem('cms-profile', JSON.stringify(profile.value));
