@@ -147,6 +147,20 @@ const isTokenExpired = (token: string | null): boolean => {
   }
 };
 
+const checkLocalBypass = (token: string | null): boolean => {
+  if (!token) return false;
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return false;
+    const payloadUrl = parts[1];
+    const base64 = payloadUrl.replace(/-/g, '+').replace(/_/g, '/');
+    const decoded = JSON.parse(atob(base64));
+    return decoded.sub === 'local-admin-uid-12345';
+  } catch (e) {
+    return false;
+  }
+};
+
 let expiryCheckInterval: any = null;
 
 // Authentication & Initial Load
@@ -182,7 +196,7 @@ onMounted(async () => {
 
   async function loadCMSData() {
     const accessToken = getCookie('admin-access-token');
-    const isLocalBypass = accessToken && accessToken.includes('local-admin-uid-12345');
+    const isLocalBypass = checkLocalBypass(accessToken);
 
     if (!hasSupabaseConfig || !supabase || isLocalBypass) {
       console.log("Supabase not active or local bypass session. Loading editable local state.");
@@ -418,7 +432,7 @@ const saveAllChanges = async () => {
   saving.value = true;
   
   const accessToken = getCookie('admin-access-token');
-  const isLocalBypass = accessToken && accessToken.includes('local-admin-uid-12345');
+  const isLocalBypass = checkLocalBypass(accessToken);
 
   // If Supabase is active but no profile ID is loaded, attempt to resolve or create it dynamically using the authenticated user session
   if (hasSupabaseConfig && supabase && !isLocalBypass && !profileId.value) {
